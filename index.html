@@ -60,6 +60,7 @@
 
   <!-- ===== SURFACE / TOPSOIL — HERO ===== -->
   <section id="home" class="hero stratum" aria-labelledby="hero-heading">
+    <canvas id="hero-strata-canvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div class="hero-content">
         <p class="eyebrow" id="hero-eyebrow">Understanding the Earth Beneath Us</p>
@@ -168,6 +169,51 @@
     </div>
   </section>
 
+  <!-- Fault divider: Core → Geo Labs -->
+  <div class="fault" aria-hidden="true" style="--p-from:#1d1712;--p-to:#141018">
+    <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
+      <g class="plate-group"><path class="plate-a" d="M-40 0 H660 L600 90 H-40 Z"/></g>
+      <g class="plate-group"><path class="plate-b" d="M660 0 H1240 V90 H600 Z"/></g>
+      <path class="vein" d="M660 0 L600 90"/>
+    </svg>
+  </div>
+
+  <!-- ===== GEO LABS — 20 INTERACTIVE GEOLOGICAL EVENT SIMULATIONS ===== -->
+  <section id="geolabs" class="geolabs stratum" aria-labelledby="geolabs-heading">
+    <div class="wrap">
+      <p class="layer-tag">Active Tectonics · Real-Time Process Simulations</p>
+      <h2 id="geolabs-heading" class="section-title fault-split">The Geo Lab — 20 Living Geological Events</h2>
+      <p class="section-sub">
+        Orogeny, rupture, eruption, erosion, diagenesis and impact — rebuilt as twenty interactive
+        canvas instruments. Every module runs on a single GPU-friendly animation loop, spins up only
+        when scrolled into view, and triggers the site seismograph when the ground gives way.
+      </p>
+      <nav class="geo-index reveal" aria-label="Geo Lab modules by discipline">
+        <a href="#geolab-orogeny">01 Himalayan Orogeny</a>
+        <a href="#geolab-supercont">02 Supercontinent Cycle</a>
+        <a href="#geolab-faultsim">03 Fault Dynamics</a>
+        <a href="#geolab-megathrust">04 Megathrust &amp; Tsunami</a>
+        <a href="#geolab-rifting">05 Continental Rifting</a>
+        <a href="#geolab-eruption">06 Volcanic Eruption</a>
+        <a href="#geolab-blacksmoker">07 Black Smoker Vent</a>
+        <a href="#geolab-fraction">08 Fractional Crystallization</a>
+        <a href="#geolab-caldera">09 Caldera Collapse</a>
+        <a href="#geolab-glacier">10 Glacial Carving</a>
+        <a href="#geolab-delta">11 Delta &amp; Avulsion</a>
+        <a href="#geolab-karst">12 Karst &amp; Cave Collapse</a>
+        <a href="#geolab-coast">13 Coastal Erosion</a>
+        <a href="#geolab-dunes">14 Cross-Bedding</a>
+        <a href="#geolab-aquifer">15 Aquifer &amp; Plume</a>
+        <a href="#geolab-fossilcore">16 Fossil Coring</a>
+        <a href="#geolab-thinsection">17 Thin-Section XPL</a>
+        <a href="#geolab-crystal">18 Crystal Lattice</a>
+        <a href="#geolab-rockcycle">19 Rock Cycle Matrix</a>
+        <a href="#geolab-impact">20 Meteorite Impact</a>
+      </nav>
+      <div id="geo-labs-root"><!-- lab cards injected by js/geolabs-*.js --></div>
+    </div>
+  </section>
+
   <!-- ===== TRACE FOSSILS — TESTIMONIALS ===== -->
   <section id="testimonials" class="testimonials stratum" aria-labelledby="testimonials-heading">
     <div class="wrap">
@@ -272,6 +318,14 @@
 <script src="js/data.js" defer></script>
 <script src="js/seismograph.js" defer></script>
 <script src="js/three-hero.js" defer></script>
+<script src="js/geolabs-core.js" defer></script>
+<script src="js/geolabs-tectonics.js" defer></script>
+<script src="js/geolabs-volcano.js" defer></script>
+<script src="js/geolabs-geomorph.js" defer></script>
+<script src="js/geolabs-sediment.js" defer></script>
+<script src="js/geolabs-petrology.js" defer></script>
+<script src="js/geolabs-planetary.js" defer></script>
+<script src="js/geolabs-hero.js" defer></script>
 <script src="js/main.js" defer></script>
 
 </body>
