@@ -160,17 +160,23 @@ window.GeoLabs = (function () {
   /* ---------- build one lab card ---------- */
   function buildCard(def) {
     const card = document.createElement('article');
-    card.className = 'geo-lab reveal';
+    /* NOTE: no `reveal` class here — scroll-reveal observers are collected once
+       at DOMContentLoaded, but lab cards are injected afterwards. Relying on
+       `.reveal` (opacity:0 until .visible) would leave every lab invisible.
+       Labs get their own self-contained entrance animation instead. */
+    card.className = 'geo-lab geo-lab--enter';
     card.id = 'geolab-' + def.id;
     card.dataset.cat = def.cat;
 
     const head = document.createElement('div');
     head.className = 'geo-lab__head';
+    /* text-escape module metadata coming from the registry */
+    const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
     head.innerHTML =
       `<span class="geo-lab__num">${String(def.num).padStart(2, '0')}</span>
-       <div><h4 class="geo-lab__title">${def.title}</h4>
-       <p class="geo-lab__desc">${def.desc}</p></div>
-       <span class="geo-lab__cat">${def.catLabel}</span>`;
+       <div><h4 class="geo-lab__title">${esc(def.title)}</h4>
+       <p class="geo-lab__desc">${esc(def.desc)}</p></div>
+       <span class="geo-lab__cat">${esc(def.catLabel)}</span>`;
 
     const stage = document.createElement('div');
     stage.className = 'geo-lab__stage';
@@ -202,6 +208,10 @@ window.GeoLabs = (function () {
 
   function mount(inst) {
     if (inst.mounted) return;
+    /* canvas must have a measurable box before mounting — otherwise width/height
+       resolve to 0 and every draw call paints nothing. Retry on next scroll tick. */
+    const r = inst.canvas.getBoundingClientRect();
+    if (!r.width || !r.height) return;
     inst.mounted = true;
     const { def, canvas, lab } = inst;
     const ctx = canvas.getContext('2d');
@@ -240,8 +250,9 @@ window.GeoLabs = (function () {
         container.appendChild(sec);
       }
       const gridEl = sec.querySelector('.geo-lab-grid') || sec;
-      groups[cat].forEach(def => {
+      groups[cat].forEach((def, di) => {
         const { card, canvas, bar } = buildCard(def);
+        card.style.setProperty('--geo-i', di);   // entrance stagger within group
         gridEl.appendChild(card);
 
         /* the lab object: controls are bound to it, modules read/write lab.v */
@@ -270,7 +281,7 @@ window.GeoLabs = (function () {
         if ('IntersectionObserver' in window) {
           const io = new IntersectionObserver(es => es.forEach(e => {
             inst._inView = e.intersectionRatio > 0.06;
-            if (inst._inView && !inst.mounted) mount(inst);
+            if (inst._inView && !inst.mounted) mount(inst);   // retries if box not measurable yet
             inst.visible = inst._inView && !inst._hidden;
           }), { threshold: [0, 0.06, 0.3], rootMargin: '140px' });
           io.observe(card);
@@ -282,6 +293,30 @@ window.GeoLabs = (function () {
         INSTANCES.push(inst);
       });
     });
+
+    /* ---- safety net: some browsers only deliver IntersectionObserver
+       callbacks on scroll. If the user never scrolls (or lands deep-linked),
+       sweep once after layout settles and then again on first interaction. */
+    function sweep() {
+      let anyPending = false;
+      INSTANCES.forEach(inst => {
+        if (inst.mounted || !inst.card.isConnected) return;
+        const r = inst.card.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        if (r.bottom > -80 && r.top < vh + 240) {
+          inst._inView = true;
+          mount(inst);                       // no-op until canvas has a real box
+          inst.visible = !inst._hidden;
+          anyPending = anyPending || !inst.mounted;
+        }
+      });
+      ensureLoop();
+      return anyPending;
+    }
+    requestAnimationFrame(() => requestAnimationFrame(sweep));
+    setTimeout(sweep, 400);                  // late layout / font reflow catch-up
+    ['scroll', 'touchstart', 'pointerdown', 'keydown'].forEach(ev =>
+      window.addEventListener(ev, sweep, { passive: true, once: true }));
   }
 
   return { register, renderInto, attachCustom, PERF, reduceMotion };
