@@ -1,0 +1,772 @@
+--- public/index.html (原始)
+
+
++++ public/index.html (修改后)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Sujan Paudyal, Geologist and Civil Engineer based in Nepal. Specializing in geological mapping, slope stability, and transmission line foundation engineering.">
+  <meta name="author" content="Sujan Paudyal">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>Sujan Paudyal | Geologist &amp; Civil Engineer</title>
+
+  <!-- Preconnect to external origins for faster asset loading -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Leaflet CSS (non-critical, loaded async) -->
+  <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
+
+  <!-- Font Awesome (non-critical, loaded async) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+  <!-- Site stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Theme initialization (prevents FOUC — must run before paint) -->
+  <script>
+    (function () {
+      if (window.__themeReady) return;
+      window.__themeReady = true;
+
+      var root = document.documentElement;
+
+      function getSaved() {
+        try { return localStorage.getItem('theme'); } catch (e) { return null; }
+      }
+
+      function setTheme(theme, persist) {
+        root.setAttribute('data-theme', theme);
+        var icon = document.getElementById('themeIcon');
+        if (icon) icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        var btn = document.getElementById('themeToggle');
+        if (btn) {
+          btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+          btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        }
+        if (persist) {
+          try { localStorage.setItem('theme', theme); } catch (e) { /* storage unavailable */ }
+        }
+      }
+
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(getSaved() || (prefersDark ? 'dark' : 'light'), false);
+
+      document.addEventListener('DOMContentLoaded', function () {
+        setTheme(root.getAttribute('data-theme'), false);
+      });
+
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest && e.target.closest('#themeToggle');
+        if (!btn) return;
+        setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+      });
+    })();
+  </script>
+</head>
+<body>
+
+<!-- Skip link — first focusable element in DOM order -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ======================== HEADER ======================== -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+
+    <a class="logo" href="#home" aria-label="Sujan Paudyal — Back to home">
+      Sujan<span aria-hidden="true">.</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <button
+      class="theme-toggle-btn"
+      id="themeToggle"
+      type="button"
+      aria-label="Switch to dark theme"
+      aria-pressed="false"
+    >
+      <span id="themeIcon" aria-hidden="true">☀️</span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ======================== MAIN ======================== -->
+<main id="main-content">
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero" aria-labelledby="hero-heading">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <p class="eyebrow">Understanding the Earth Beneath Us</p>
+        <h1 id="hero-heading">
+          <span id="typing-text">I Study the Ground Beneath What We Build.</span><span class="typing-cursor" aria-hidden="true"></span>
+        </h1>
+        <p class="lead">I'm Sujan Paudyal, an Assistant Geologist with 3+ years of field experience. I'm passionate about geology, glaciology, and exploring the processes that shape the Himalayan landscape.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View my work</a>
+          <a class="btn btn-ghost" href="CV_SUJAN_PAUDYAL.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="extra-bth">
+          <a class="btn btn-secondary" href="my-friends.html" target="_blank" rel="noopener noreferrer">Meet My Friends</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <figure class="photo-card">
+          <img
+            src="image/fied3.jpeg"
+            alt="Sujan Paudyal standing in front of the Pathibhara temple in Taplejung, Nepal"
+            width="600"
+            height="750"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </figure>
+        <p class="credential">
+          <span aria-hidden="true">🎓</span> B.Sc. Geology · Trichandra Multiple Campus, Tribhuvan University
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="about" aria-labelledby="about-heading">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 id="about-heading">About Me</h2>
+        <p class="about-tagline">Where geology meets construction — reading the ground before the first footing is poured.</p>
+
+        <p class="about-lede">
+          I'm Sujan Paudyal, a geology graduate from Tri-Chandra Multiple Campus, Tribhuvan University, and currently a <span class="accent-term">Civil Sub-Engineer</span> on an active 132&nbsp;kV transmission line project in Taplejung. My work sits at the intersection of two disciplines: understanding what the ground is made of, and building safely on top of it.
+        </p>
+        <p class="about-lede">
+          Across steep Himalayan terrain, that means <span>geological mapping, rock and soil identification, and slope stability assessments</span> on one side, and <span>foundation supervision, site leveling, and construction quality control</span> on the other. That dual lens has shaped my published research on flood dynamics and slope stability, and it now guides how I read a hillside before it's ever touched by a footing.
+        </p>
+        <p class="about-lede">
+          Explore my research and fieldwork below, or reach out to talk about academic collaboration, geotechnical consulting, or graduate opportunities.
+        </p>
+        <ul class="skill-list" aria-label="Core technical skills">
+          <li>Geological Mapping</li>
+          <li>Rock Identification</li>
+          <li>Soil Testing</li>
+          <li>Terrain Analysis</li>
+          <li>AutoCAD</li>
+          <li>Surveying</li>
+          <li>Foundation Construction</li>
+          <li>MS Excel &amp; Word</li>
+        </ul>
+      </div>
+
+      <div class="about-side">
+        <figure class="about-photo">
+          <img
+            src="image/filed3.jpeg"
+            alt="Sujan Paudyal examining foliated rock strata during a geological field survey in the Himalayas"
+            width="600"
+            height="750"
+            loading="lazy"
+            decoding="async"
+          >
+        </figure>
+        <div class="about-stats" role="list" aria-label="Key qualifications">
+          <div class="stat-row" role="listitem">
+            <span class="stat-label">Education</span>
+            <span class="stat-value">Bachelor of Science</span>
+            <span class="badge badge--academic">Geology</span>
+          </div>
+
+          <div class="stat-row" role="listitem">
+            <span class="stat-label">Field Experience</span>
+            <span class="stat-value">3+ years in transmission line project</span>
+            <span class="badge badge--field">Government project</span>
+          </div>
+
+          <div class="stat-row" role="listitem">
+            <span class="stat-label">Research</span>
+            <span class="stat-value">Flood dynamics of Rasuwagadhi, Kerung border</span>
+            <span class="badge badge--research">GEOWORLD Students' Journal Vol.&nbsp;13</span>
+          </div>
+
+          <div class="stat-row" role="listitem">
+            <span class="stat-label">Current Focus</span>
+            <span class="stat-value">Seismic Micro-zonation of Jajarkot, Nepal</span>
+            <span class="badge badge--focus">In progress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education timeline (nested within About section for proper heading hierarchy) -->
+    <div class="about-education row">
+      <h3 id="education-heading">Education Timeline</h3>
+      <ol class="timeline" aria-label="Education history">
+        <li class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <h4>Bachelor of Science in Geology</h4>
+            <p class="timeline-meta">
+              <span class="timeline-institution">Tri-Chandra Multiple Campus, Tribhuvan University</span>
+              <span class="timeline-location">Kathmandu</span>
+            </p>
+            <p>Completed a 4-year curriculum covering Structural Geology, Petrology, Engineering Geology, Hydrogeology, and the Geology of Nepal. Practical training includes geological field mapping, rock mass identification, stratigraphy, and technical field report writing.</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <h4>+2 Technical Science (Civil Engineering Stream)</h4>
+            <p class="timeline-meta">
+              <span class="timeline-institution">Shree Padma Secondary School</span>
+              <span class="timeline-location">Bhaktapur</span>
+            </p>
+            <p>Completed technical coursework in Soil Mechanics, Foundation Engineering, Field Surveying, and Highway Engineering alongside foundational sciences. This applied background built a practical understanding of ground stability and soil behavior, directly preparing me for my B.Sc. studies in Engineering Geology.</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <h4>Secondary Education Examination (SEE) — Technical Stream (Civil Engineering)</h4>
+            <p class="timeline-meta">
+              <span class="timeline-institution">Shree Bhanu Jana Secondary School</span>
+              <span class="timeline-location">Taplejung</span>
+            </p>
+            <p>Completed technical coursework focused on civil engineering fundamentals, basic surveying, and construction materials. This early vocational training provided my first practical exposure to land structures and material behavior, sparking my long-term academic interest in geotechnical engineering and geology.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" class="experience" aria-labelledby="experience-heading">
+    <h2 id="experience-heading" class="subsection-title">Work Experience</h2>
+
+    <div class="subsection">
+      <div class="exp-item">
+        <h3>Civil Sub-Engineer</h3>
+        <p class="exp-org">
+          Rastriya Prasaran Grid Company Limited (RPGCL)
+          <span aria-hidden="true">·</span>
+          Mewa-Changhe 132&nbsp;kV Transmission Line Project, Taplejung
+        </p>
+        <span class="exp-duration">3+ Years</span>
+        <ul class="exp-list">
+          <li>Oversee site construction of transmission tower footings, verifying compliance with structural specifications and safety standards.</li>
+          <li>Conducted field soil assessments, test pit inspections, and leveling surveys to optimize foundation placement on complex slopes.</li>
+          <li>Evaluated rock and soil stability along tower alignments to mitigate landslide and erosion hazards during excavation.</li>
+          <li>Tracked project quantities, maintained daily technical logs, and streamlined field communication across project stakeholders.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Projects &amp; Internships</h3>
+      <div class="exp-grid">
+        <article class="exp-card">
+          <h4>Hydroelectric Site Investigation (OJT)</h4>
+          <p class="exp-org">Madhyaphawa Khola Jalabidhyut Co-operative Ltd. · 6&nbsp;Months</p>
+          <ul class="exp-list">
+            <li>Conducted geological field mapping and terrain surveys along waterway alignments.</li>
+            <li>Assessed soil and rock stability at planned intake and headworks sites.</li>
+            <li>Supported civil engineering teams with preliminary field data collection.</li>
+          </ul>
+        </article>
+
+        <article class="exp-card">
+          <h4>Municipal Engineering Intern</h4>
+          <p class="exp-org">Suryabinayak &amp; Phungling Municipalities · 3&nbsp;Months Each</p>
+          <ul class="exp-list">
+            <li>Assisted with topographic surveys and leveling for municipal road projects.</li>
+            <li>Inspected slope conditions and drainage pathways for local retaining structures.</li>
+            <li>Gained practical exposure to municipal civil works and local site evaluations.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Volunteer &amp; Extracurricular</h3>
+      <ul class="volunteer-list">
+        <li>
+          <strong>Tribhuvan University Students Exploration Chapter (TUSEG)</strong>
+          <span>Coordinated geological field mapping, technical workshops, and student interaction programs.</span>
+        </li>
+        <li>
+          <strong>Community Disaster Preparedness &amp; Hazard Awareness</strong>
+          <span>Conducted local awareness on landslide safety, slope monitoring, and flood precautions.</span>
+        </li>
+        <li>
+          <strong>Nepal Geological Student Society (NGSS) — Student Volunteer</strong>
+          <span>Supported event organization and technical session coordination during geological exhibition.</span>
+        </li>
+        <li>
+          <strong>Youth Red Cross — Tri-Chandra Chapter</strong>
+          <span>Organized campus blood donation drives and supported first-aid and community health outreach initiatives.</span>
+        </li>
+        <li>
+          <strong>Amnesty International — Tri-Chandra Youth Network</strong>
+          <span>Participated in youth leadership campaigns, social awareness drives, and community advocacy programs.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== MENTORS ===== -->
+  <section id="mentors" class="mentor-section" aria-labelledby="mentors-heading">
+    <div class="subsection mentor-block">
+      <h2 id="mentors-heading" class="subsection-title">Mentors &amp; Guidance</h2>
+      <p class="subsection-lead">Grateful for the academic mentors who shaped my path into geology research.</p>
+      <div class="mentor-strip">
+        <figure class="mentor-photo">
+          <img
+            src="image/with-professor.jpeg"
+            alt="Sujan Paudyal standing with his geology professor from Tri-Chandra Multiple Campus"
+            width="600"
+            height="450"
+            loading="lazy"
+            decoding="async"
+          >
+          <figcaption>With a geology mentor from Tri-Chandra Multiple Campus</figcaption>
+        </figure>
+
+        <figure class="mentor-photo">
+          <img
+            src="image/professor.jpeg"
+            alt="Sujan Paudyal in discussion with an academic mentor about graduate research directions"
+            width="600"
+            height="450"
+            loading="lazy"
+            decoding="async"
+          >
+          <figcaption>Discussing research directions ahead of graduate applications</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH / PROJECTS ===== -->
+  <section id="research" class="projects" aria-labelledby="research-heading">
+    <div class="projects-section">
+      <div class="section-intro">
+        <h2 id="research-heading">My Research</h2>
+        <p>Applied field engineering, geotechnical assessments, and published geological research.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card" id="projects">
+          <div class="project-cover">
+            <img
+              src="image/field10.jpeg"
+              alt="River channel measurement and field research near the Rasuwagadhi-Kerung transboundary corridor"
+              width="800"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="project-icon" aria-hidden="true">🌊</div>
+          </div>
+          <div class="project-body">
+            <span class="project-meta">Published Research · GeoWorld Journal</span>
+            <h3>Flood Dynamics at Rasuwagadhi-Kerung Border</h3>
+            <p>Field-based study analyzing mountain flood hazards, terrain vulnerabilities, and disaster risk management along the transboundary corridor. Published in GeoWorld Students' Journal.</p>
+            <div class="tag-list" aria-label="Research topics">
+              <span>Publication</span>
+              <span>Disaster Risk</span>
+              <span>Geomorphology</span>
+              <span>Flood Analysis</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="paper.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Read published research paper on Rasuwagadhi flood dynamics (opens PDF in new tab)"
+              >Read Paper (PDF) →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials" class="testimonials" aria-labelledby="testimonials-heading">
+    <div class="section-intro">
+      <p class="section-eyebrow">Testimonials</p>
+      <h2 id="testimonials-heading">What People Say</h2>
+      <p>Feedback from colleagues, mentors, and collaborators who've worked with me in the field.</p>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <article class="testimonial-card">
+        <span class="testimonial-badge">Academic Mentor</span>
+        <blockquote class="testimonial-content">
+          <p class="testimonial-text">Sujan demonstrates exceptional attention to detail in geological fieldwork and communicates complex terrain analysis in a way that helps bridge geology and engineering teams.</p>
+        </blockquote>
+        <footer class="testimonial-author">
+          <span class="author-avatar" data-initials="RN">
+            <img
+              src="image/ramesh-neupane.jpg"
+              alt="Portrait of Dr. Ramesh Neupane"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.display='none'"
+            >
+          </span>
+          <span class="author-info">
+            <span class="author-name">Dr. Ramesh Neupane</span>
+            <span class="author-role">Geology Professor, Tri-Chandra Multiple Campus</span>
+          </span>
+        </footer>
+      </article>
+
+      <article class="testimonial-card">
+        <span class="testimonial-badge">Field Colleague</span>
+        <blockquote class="testimonial-content">
+          <p class="testimonial-text">On our transmission line project, Sujan's foundation inspections caught several critical site issues early. His systematic approach to slope stability saved us both time and risk.</p>
+        </blockquote>
+        <footer class="testimonial-author">
+          <span class="author-avatar" data-initials="PS">
+            <img
+              src="image/prakash-sharma.jpg"
+              alt="Portrait of Prakash Sharma"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.display='none'"
+            >
+          </span>
+          <span class="author-info">
+            <span class="author-name">Prakash Sharma</span>
+            <span class="author-role">Site Engineer, RPGCL Taplejung Project</span>
+          </span>
+        </footer>
+      </article>
+
+      <article class="testimonial-card">
+        <span class="testimonial-badge">Project Lead</span>
+        <blockquote class="testimonial-content">
+          <p class="testimonial-text">Sujan's contribution to our hydroelectric site assessment was thorough and well-documented. His geological insights shaped our entire site layout strategy.</p>
+        </blockquote>
+        <footer class="testimonial-author">
+          <span class="author-avatar" data-initials="AP">
+            <img
+              src="image/anita-poudel.jpg"
+              alt="Portrait of Anita Poudel"
+              width="48"
+              height="48"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.display='none'"
+            >
+          </span>
+          <span class="author-info">
+            <span class="author-name">Anita Poudel</span>
+            <span class="author-role">Project Lead, Madhyaphawa Khola Hydroelectric</span>
+          </span>
+        </footer>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery" class="gallery" aria-labelledby="gallery-heading">
+    <div class="section-intro">
+      <h2 id="gallery-heading">In the Field</h2>
+      <p>Moments from site supervision, surveying, and foundation work across Taplejung's terrain.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <figure class="gallery-item">
+        <button
+          type="button"
+          class="gallery-trigger"
+          data-full-src="image/field2.jpeg"
+          data-caption="Site inspection at a tower boundary marker"
+          aria-label="View larger image: Field crew inspecting a boundary marker at a transmission tower site overlooking a valley"
+        >
+          <img
+            src="image/field2.jpeg"
+            alt="Field crew inspecting a boundary marker at a transmission tower site overlooking a valley"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          >
+        </button>
+        <figcaption>Site inspection at a tower boundary marker</figcaption>
+      </figure>
+
+      <figure class="gallery-item">
+        <button
+          type="button"
+          class="gallery-trigger"
+          data-full-src="image/field4.jpeg"
+          data-caption="Foundation excavation review with the crew"
+          aria-label="View larger image: Field crew reviewing a foundation excavation pit on a grassy hillside"
+        >
+          <img
+            src="image/field4.jpeg"
+            alt="Field crew reviewing a foundation excavation pit on a grassy hillside"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          >
+        </button>
+        <figcaption>Foundation excavation review with the crew</figcaption>
+      </figure>
+
+      <figure class="gallery-item">
+        <button
+          type="button"
+          class="gallery-trigger"
+          data-full-src="image/field6.jpeg"
+          data-caption="Completed foundation base, ready for erection"
+          aria-label="View larger image: Completed reinforced concrete tower foundation base ready for steel erection"
+        >
+          <img
+            src="image/field6.jpeg"
+            alt="Completed reinforced concrete tower foundation base ready for steel erection"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          >
+        </button>
+        <figcaption>Completed foundation base, ready for erection</figcaption>
+      </figure>
+
+      <figure class="gallery-item">
+        <button
+          type="button"
+          class="gallery-trigger"
+          data-full-src="image/field7.jpeg"
+          data-caption="Walking the platform during a site visit"
+          aria-label="View larger image: Two engineers walking across a foundation platform on a steep slope"
+        >
+          <img
+            src="image/field7.jpeg"
+            alt="Two engineers walking across a foundation platform on a steep slope"
+            width="800"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          >
+        </button>
+        <figcaption>Walking the platform during a site visit</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== FIELD MAP ===== -->
+  <section id="field-map" class="field-map" aria-labelledby="map-heading">
+    <div class="section-intro">
+      <p class="section-eyebrow">Field Coverage</p>
+      <h2 id="map-heading">Map of Nepal</h2>
+      <p>Where I've worked, surveyed and studied — from the transboundary corridors at Rasuwagadhi to the transmission line alignments of Taplejung.</p>
+    </div>
+
+    <div class="map-shell">
+      <div
+        id="travelMap"
+        class="map-canvas"
+        role="application"
+        aria-label="Interactive map of Nepal showing fieldwork, research, and academic locations. Use the legend below to navigate to specific sites."
+        tabindex="0"
+      ></div>
+
+      <aside class="map-legend" aria-label="Field site legend">
+        <h3 class="map-legend-title">Field Sites</h3>
+
+        <ul class="map-legend-list">
+          <li>
+            <button type="button" class="map-legend-item" data-site="taplejung">
+              <span class="legend-dot legend-dot--work" aria-hidden="true"></span>
+              <span class="legend-text">
+                <strong>Taplejung</strong>
+                <em>Mewa–Changhe 132&nbsp;kV Transmission Line</em>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="map-legend-item" data-site="madhyaphawa">
+              <span class="legend-dot legend-dot--work" aria-hidden="true"></span>
+              <span class="legend-text">
+                <strong>Madhyaphawa Khola</strong>
+                <em>Hydroelectric site investigation (OJT)</em>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="map-legend-item" data-site="rasuwagadhi">
+              <span class="legend-dot legend-dot--research" aria-hidden="true"></span>
+              <span class="legend-text">
+                <strong>Rasuwagadhi–Kerung</strong>
+                <em>Published flood dynamics research</em>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="map-legend-item" data-site="jajarkot">
+              <span class="legend-dot legend-dot--research" aria-hidden="true"></span>
+              <span class="legend-text">
+                <strong>Jajarkot</strong>
+                <em>Seismic micro-zonation study (in progress)</em>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="map-legend-item" data-site="kathmandu">
+              <span class="legend-dot legend-dot--study" aria-hidden="true"></span>
+              <span class="legend-text">
+                <strong>Kathmandu</strong>
+                <em>Tri-Chandra Multiple Campus, Tribhuvan University</em>
+              </span>
+            </button>
+          </li>
+        </ul>
+
+        <ul class="map-key" aria-label="Map symbol key">
+          <li><span class="legend-dot legend-dot--work" aria-hidden="true"></span> Field work</li>
+          <li><span class="legend-dot legend-dot--research" aria-hidden="true"></span> Research</li>
+          <li><span class="legend-dot legend-dot--study" aria-hidden="true"></span> Academic</li>
+        </ul>
+
+        <p class="map-legend-note">Select a site to zoom in, or drag the map to explore. Scroll-zoom activates after you click the map.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact" aria-labelledby="contact-heading">
+    <div class="section-intro">
+      <h2 id="contact-heading">Get in Touch</h2>
+      <p>Interested in collaboration, research opportunities, or just a conversation? Reach out anytime.</p>
+    </div>
+
+    <div class="contact-card">
+      <p class="contact-intro">I'm open to graduate research opportunities, consulting, and project collaborations. Let's connect!</p>
+
+      <a class="btn btn-primary btn-cv" href="CV_SUJAN_PAUDYAL.pdf" download>
+        Download CV <span aria-hidden="true">↓</span>
+      </a>
+
+      <address class="contact-details">
+        <div class="contact-row">
+          <strong>Email:</strong>
+          <a href="mailto:again.sujan@gmail.com">again.sujan@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <strong>Phone:</strong>
+          <a href="tel:+9779867996682">+977 986-7996682</a>
+        </div>
+        <div class="contact-row">
+          <strong>LinkedIn:</strong>
+          <a
+            href="https://www.linkedin.com/in/sujanpaudyal"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Sujan Paudyal on LinkedIn (opens in new tab)"
+          >linkedin.com/in/sujanpaudyal</a>
+        </div>
+        <div class="contact-row">
+          <strong>Location:</strong>
+          <span>Kathmandu / Koshi Province, Nepal</span>
+        </div>
+        <div class="contact-row">
+          <strong>References:</strong>
+          <span>Academic &amp; professional references available on request</span>
+        </div>
+      </address>
+
+      <p class="languages">
+        <span aria-hidden="true">🇳🇵</span>
+        <span>Languages: Nepali (native) · English (fluent) · Hindi (conversational)</span>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>&copy; 2026 Sujan Paudyal. Built with <span aria-hidden="true">📐</span> and clean code.</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ======================== LIGHTBOX ======================== -->
+<div
+  class="lightbox"
+  id="lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Enlarged image viewer"
+  hidden
+>
+  <button class="lightbox-close" type="button" aria-label="Close image viewer">
+    <span aria-hidden="true">✕</span>
+  </button>
+  <figure>
+    <img id="lightbox-img" src="" alt="" decoding="async">
+    <figcaption id="lightbox-caption"></figcaption>
+  </figure>
+</div>
+
+<!-- ======================== SCRIPTS ======================== -->
+<!-- Leaflet loaded with defer for non-blocking parse -->
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+  defer
+></script>
+<script src="script.js?v=4" defer></script>
+
+</body>
+</html>
