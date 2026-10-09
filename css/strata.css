@@ -110,6 +110,7 @@ button { font: inherit; cursor: pointer; background: none; border: 0; color: inh
 main { position: relative; z-index: 2; }
 
 /* ---------- Header ---------- */
+body.has-header { padding-top: var(--header-h); }
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: var(--header-h);
