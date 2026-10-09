@@ -512,6 +512,16 @@ function initMap() {
 }
 
 /* ==========================================================================
+   8. GEO LAB — mount the 20 interactive geological event simulations
+   (framework: js/geolabs-core.js · modules: js/geolabs-{tectonics,volcano,
+   geomorph,sediment,petrology,planetary}.js)
+   ========================================================================== */
+function initGeoLabs() {
+  if (!window.GeoLabs) return;
+  window.GeoLabs.renderInto('#geo-labs-root');
+}
+
+/* ==========================================================================
    BOOT
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -523,4 +533,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initParallax();
   initMap();
+  initGeoLabs();
 });
