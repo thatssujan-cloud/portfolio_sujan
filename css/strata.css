@@ -1,47 +1,69 @@
 /* ==========================================================================
    STRATA — Geological Portfolio Design System
    Sujan Paudyal · Geologist & Civil Engineer
-   Palette: basalt / charcoal · sediment earth tones · terracotta strata ·
-   copper-gold mineral accents. Sections are literal crustal layers.
+   Palette v2 "Soft Strata": muted mauve dusk · warm sand · rose-clay &
+   sage minerals · honey-gold accents. Full light/dark theming via
+   [data-theme] token overrides — sections are literal crustal layers.
    ========================================================================== */
 
 /* ---------- Fonts (loaded in HTML) : Fraunces (display) + Inter (body) + IBM Plex Mono (data) */
 :root {
-  /* Mineral / basalt core */
-  --basalt-950: #0c0b0e;
-  --basalt-900: #141317;
-  --basalt-850: #1a181d;
-  --basalt-800: #222026;
-  --charcoal:   #2b2930;
-  --charcoal-2: #37343d;
+  /* Mineral / basalt core — softened to a dusky mauve-charcoal */
+  --basalt-950: #17151f;
+  --basalt-900: #1e1b27;
+  --basalt-850: #242132;
+  --basalt-800: #2b2739;
+  --charcoal:   #353047;
+  --charcoal-2: #413b54;
 
-  /* Sediment & strata */
-  --sediment-100: #f1e7d8;
-  --sediment-200: #e3d3ba;
-  --sediment-300: #d3bd9c;
-  --topsoil:      #a9714b;
-  --terracotta:   #b6552e;
-  --terracotta-2: #d97e4a;
-  --ochre:        #c98d5f;
-  --clay:         #7b4f36;
-  --slate-green:  #41697a;
+  /* Sediment & strata — warm sand & rose-clay earth tones */
+  --sediment-100: #f4ecdf;
+  --sediment-200: #e6d8c3;
+  --sediment-300: #d5c3a6;
+  --topsoil:      #b0805c;
+  --terracotta:   #c06a4a;
+  --terracotta-2: #dd8b62;
+  --ochre:        #cf9768;
+  --clay:         #8a5d45;
+  --slate-green:  #5f8794;
 
-  /* Mineral accents */
-  --gold:       #e0a95f;
-  --gold-bright:#f2c66d;
-  --copper:     #c47a4a;
-  --pyrite:     #d8b25f;
+  /* Mineral accents — honey gold, soft amber, sage */
+  --gold:       #e6b877;
+  --gold-bright:#f4d08f;
+  --copper:     #cd8859;
+  --pyrite:     #dfbc72;
+  --sage:       #8fae8b;
 
   /* Semantic */
   --bg:            var(--basalt-950);
-  --surface:       rgba(255, 255, 255, 0.04);
-  --surface-2:     rgba(255, 255, 255, 0.07);
+  --surface:       rgba(255, 255, 255, 0.05);
+  --surface-2:     rgba(255, 255, 255, 0.08);
   --text:          #ece3d4;
   --text-muted:    #b3a795;
   --accent:        var(--gold);
   --accent-strong: var(--terracotta-2);
-  --line:          rgba(224, 169, 95, 0.22);
+  --line:          rgba(230, 184, 119, 0.24);
   --line-soft:     rgba(236, 227, 212, 0.12);
+
+  /* Themeable overlays & shells */
+  --scrim:         rgba(23, 21, 31, 0.6);
+  --scrim-strong:  rgba(23, 21, 31, 0.9);
+  --header-bg:     rgba(23, 21, 31, 0.88);
+  --nav-open-bg:   radial-gradient(circle at 70% 20%, #2c2538, var(--basalt-950) 65%);
+  --map-bg:        #211f2c;
+  --seismo-a:      rgba(192, 106, 74, 0.55);
+  --seismo-b:      rgba(230, 184, 119, 0.75);
+  --seismo-c:      rgba(221, 139, 98, 0.55);
+  --seismo-grid:   rgba(230, 184, 119, 0.05);
+  --seismo-glow:   rgba(230, 184, 119, 0.5);
+  --seismo-pen:    #f4d08f;
+
+  /* Crustal layer stops (fault dividers follow the section gradients) */
+  --layer-surface-a: #1d1a26;  --layer-surface-b: #241e22;
+  --layer-regolith:  #241e22;  --layer-sed-a:     #221d29;
+  --layer-sed-b:     #221d29;  --layer-deep:      #291f20;
+  --layer-deep-b:    #291f20;  --layer-mantle:    #35201b;
+  --layer-mantle-b:  #35201b;  --layer-core:      #42231a;
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -53,6 +75,130 @@
   --header-h: 74px;
   --maxw: 1200px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- LIGHT THEME — sunlit limestone plateau ---------- */
+[data-theme="light"] {
+  --basalt-950: #f7f2e8;
+  --basalt-900: #efe6d6;
+  --basalt-850: #e7dcc8;
+  --basalt-800: #ded0b8;
+  --charcoal:   #d3c3a8;
+  --charcoal-2: #c3b091;
+
+  --sediment-100: #4c4152;
+  --sediment-200: #5d4f3f;
+  --sediment-300: #6e5d47;
+  --topsoil:      #96603c;
+  --terracotta:   #ad4e26;
+  --terracotta-2: #c2643b;
+  --ochre:        #a06a35;
+  --clay:         #77503a;
+  --slate-green:  #3f6a7c;
+
+  --gold:       #c08a3e;
+  --gold-bright:#a97a35;
+  --copper:     #ab6440;
+  --pyrite:     #9a7b2d;
+  --sage:       #5f8160;
+
+  --bg:            #f7f2e8;
+  --surface:       rgba(76, 58, 40, 0.055);
+  --surface-2:     rgba(76, 58, 40, 0.1);
+  --text:          #332e3a;
+  --text-muted:    #6f6557;
+  --line:          rgba(160, 112, 60, 0.32);
+  --line-soft:     rgba(76, 58, 40, 0.14);
+
+  --scrim:         rgba(247, 242, 232, 0.65);
+  --scrim-strong:  rgba(247, 242, 232, 0.92);
+  --header-bg:     rgba(247, 242, 232, 0.9);
+  --nav-open-bg:   radial-gradient(circle at 70% 20%, #f0e4cd, var(--basalt-950) 65%);
+  --map-bg:        #e9e2d2;
+  --seismo-a:      rgba(173, 78, 38, 0.4);
+  --seismo-b:      rgba(192, 138, 62, 0.6);
+  --seismo-c:      rgba(194, 100, 59, 0.4);
+  --seismo-grid:   rgba(160, 112, 60, 0.08);
+  --seismo-glow:   rgba(192, 138, 62, 0.35);
+  --seismo-pen:    #b3822f;
+
+  --layer-surface-a: #f7f2e8;  --layer-surface-b: #f2e9da;
+  --layer-regolith:  #f2e9da;  --layer-sed-a:     #eee3d0;
+  --layer-sed-b:     #eee3d0;  --layer-deep:      #eadcc4;
+  --layer-deep-b:    #eadcc4;  --layer-mantle:    #ecd6bd;
+  --layer-mantle-b:  #ecd6bd;  --layer-core:      #e8cba8;
+}
+
+/* Smooth cross-fade when switching themes */
+.theming *, .theming *::before, .theming *::after {
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease,
+              fill .45s ease, box-shadow .45s ease !important;
+}
+
+/* ---------- Theme switch (sun/moon slider) ---------- */
+.header-tools { display: flex; align-items: center; gap: 10px; order: 3; }
+@media (min-width: 861px) { .header-tools { order: 2; } .primary-nav { order: 3; } }
+.theme-toggle { width: 64px; height: 32px; position: relative; z-index: 1002; }
+.theme-toggle__track {
+  position: absolute; inset: 0; border-radius: 999px; display: block;
+  background: var(--surface-2); border: 1px solid var(--line);
+  transition: background .3s var(--ease), border-color .3s;
+}
+.theme-toggle:hover .theme-toggle__track { border-color: var(--gold); }
+.theme-toggle__thumb {
+  position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--copper));
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .35);
+  transition: transform .4s var(--ease);
+}
+[data-theme="light"] .theme-toggle__thumb { transform: translateX(32px); }
+.theme-toggle__icon {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: .8rem; line-height: 1; color: var(--text-muted); z-index: 1;
+  transition: color .3s, opacity .3s;
+}
+.theme-toggle__icon--sun  { left: 8px;  opacity: .55; }
+.theme-toggle__icon--moon { right: 8px; opacity: 1; }
+[data-theme="light"] .theme-toggle__icon--sun  { opacity: 1; color: var(--gold); }
+[data-theme="light"] .theme-toggle__icon--moon { opacity: .45; }
+
+@media (max-width: 860px) { .header-tools { order: 2; margin-left: auto; } .nav-toggle { order: 3; } }
+
+/* ---------- Wavy shimmer on titles ---------- */
+.wavy {
+  background-image: linear-gradient(110deg, transparent 33%, var(--gold-bright) 50%, transparent 67%);
+  background-size: 300% 100%;
+  background-position: 200% 0;
+  -webkit-background-clip: text; background-clip: text;
+  animation: waveShimmer 5.5s ease-in-out infinite;
+}
+@keyframes waveShimmer { to { background-position: -100% 0; } }
+
+/* ---------- Per-letter title wave (JS splits .section-title into spans) ---------- */
+.wave-letter { display: inline-block; }
+.section-title.in-wave .wave-letter { animation: letterWave 2.6s var(--ease) infinite; animation-delay: var(--wi, 0ms); }
+@keyframes letterWave { 0%, 62%, 100% { transform: none; } 18% { transform: translateY(-7px); } 34% { transform: translateY(2px); } }
+
+/* ---------- Typing effect for hero lead paragraph ---------- */
+.typing-caret-inline {
+  display: inline-block; width: .5ch; height: 1em; margin-left: 2px;
+  background: var(--gold); vertical-align: text-bottom;
+  animation: blink 1s steps(1) infinite;
+}
+
+/* ---------- Floating badges & skill chips ---------- */
+.testimonial-badge, .exp-duration { animation: floaty 5s ease-in-out infinite; }
+.exp-duration { animation-delay: 1.2s; }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.skill-list li { transition: all .3s var(--ease); }
+.skill-list li:nth-child(even) { transition-delay: .05s; }
+
+/* ---------- Gentle breathing glow on the magma footer line ---------- */
+.magma-line { animation: magma 6s ease-in-out infinite alternate, breatheGlow 4.5s ease-in-out infinite alternate; }
+@keyframes breatheGlow { from { filter: drop-shadow(0 0 2px rgba(230,184,119,.2)); } to { filter: drop-shadow(0 0 8px rgba(230,184,119,.55)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wavy, .section-title.in-wave .wave-letter, .testimonial-badge, .exp-duration, .magma-line { animation: none; }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -101,7 +247,9 @@ button { font: inherit; cursor: pointer; background: none; border: 0; color: inh
 #seismo-canvas {
   position: fixed; inset: 0; width: 100%; height: 100%;
   z-index: 0; pointer-events: none; opacity: .5;
+  transition: opacity .4s ease;
 }
+[data-theme="light"] #seismo-canvas { opacity: .38; }
 .grain {
   position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
@@ -114,13 +262,13 @@ body.has-header { padding-top: var(--header-h); }
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: var(--header-h);
-  background: linear-gradient(to bottom, rgba(12,11,14,.92), rgba(12,11,14,.75) 70%, transparent);
+  background: linear-gradient(to bottom, var(--scrim-strong), var(--scrim) 70%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: border-color .4s var(--ease), background .4s var(--ease);
 }
-.site-header.scrolled { border-bottom-color: var(--line-soft); background: rgba(12,11,14,.88); }
+.site-header.scrolled { border-bottom-color: var(--line-soft); background: var(--header-bg); }
 
 .header-inner {
   max-width: var(--maxw); margin: 0 auto; height: 100%;
@@ -166,7 +314,7 @@ body.has-header { padding-top: var(--header-h); }
   .nav-toggle { display: block; }
   .primary-nav {
     position: fixed; inset: 0; z-index: 1001;
-    background: radial-gradient(circle at 70% 20%, #241d17, var(--basalt-950) 65%);
+    background: var(--nav-open-bg);
     display: grid; place-items: center;
     opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s;
   }
@@ -229,8 +377,13 @@ body.has-header { padding-top: var(--header-h); }
   position: relative; height: 90px; overflow: hidden; z-index: 3; pointer-events: none;
 }
 .fault svg { position: absolute; left: 0; width: 100%; height: 100%; }
-.fault .plate-a { fill: var(--p-from, #17151a); }
-.fault .plate-b { fill: var(--p-to, #1d1a16); }
+.fault .plate-a { fill: var(--p-from, var(--layer-surface-a)); }
+.fault .plate-b { fill: var(--p-to, var(--layer-surface-b)); }
+/* crustal layer stops — dividers blend the two sections they join */
+.fault.layer-1 { --p-from: var(--layer-surface-a); --p-to: var(--layer-regolith); }
+.fault.layer-2 { --p-from: var(--layer-regolith);  --p-to: var(--layer-sed-a); }
+.fault.layer-3 { --p-from: var(--layer-sed-a);     --p-to: var(--layer-deep); }
+.fault.layer-4 { --p-from: var(--layer-mantle);    --p-to: var(--layer-core); }
 .fault .vein { stroke: var(--gold); stroke-width: 1.4; opacity: .5; }
 
 /* Parallax strata bands inside sections */
@@ -244,9 +397,9 @@ body.has-header { padding-top: var(--header-h); }
 .hero {
   min-height: 100svh; display: flex; align-items: center;
   background:
-    radial-gradient(1100px 500px at 80% -10%, rgba(182,85,46,.16), transparent 60%),
-    radial-gradient(900px 600px at 10% 110%, rgba(224,169,95,.08), transparent 55%),
-    linear-gradient(180deg, #17130f 0%, #14121a 55%, var(--basalt-950) 100%);
+    radial-gradient(1100px 500px at 80% -10%, rgba(192,106,74,.16), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, rgba(230,184,119,.09), transparent 55%),
+    linear-gradient(180deg, var(--layer-surface-a) 0%, #201c2a 55%, var(--basalt-950) 100%);
   padding-top: var(--header-h);
   overflow: hidden;
 }
@@ -305,7 +458,7 @@ body.has-header { padding-top: var(--header-h); }
   font-family: var(--font-mono); font-size: .64rem; letter-spacing: .22em;
   text-transform: uppercase; color: var(--text-muted);
   border: 1px dashed var(--line); border-radius: 999px; padding: 6px 12px;
-  background: rgba(12,11,14,.5); backdrop-filter: blur(4px);
+  background: var(--scrim); backdrop-filter: blur(4px);
 }
 .credential {
   margin-top: 18px; font-family: var(--font-mono); font-size: .74rem;
@@ -325,7 +478,7 @@ body.has-header { padding-top: var(--header-h); }
 @keyframes drill { 0% { transform: scaleY(0); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: top; } 100% { opacity: 0; transform: scaleY(1); } }
 
 /* ---------- ABOUT · Weathered Regolith ---------- */
-.about { background: linear-gradient(180deg, var(--basalt-950), #191512); }
+.about { background: linear-gradient(180deg, var(--basalt-950), var(--layer-regolith)); }
 .about-grid {
   display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
   gap: clamp(28px, 5vw, 64px); align-items: start;
@@ -359,7 +512,7 @@ body.has-header { padding-top: var(--header-h); }
 }
 .about-photo::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(12,11,14,.75));
+  background: linear-gradient(180deg, transparent 55%, var(--scrim));
 }
 .about-photo img { width: 100%; object-fit: cover; }
 
@@ -484,7 +637,7 @@ body.has-header { padding-top: var(--header-h); }
 .volunteer-list span { color: var(--text-muted); font-size: .85rem; }
 
 /* ---------- Mentors ---------- */
-.mentors { background: linear-gradient(180deg, #1d1a16, #17141a); }
+.mentors { background: linear-gradient(180deg, #262031, var(--layer-sed-b)); }
 .mentor-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 34px; }
 .mentor-photo {
   border-radius: var(--radius-md); overflow: hidden;
@@ -496,11 +649,11 @@ body.has-header { padding-top: var(--header-h); }
 .mentor-photo figcaption {
   position: absolute; inset: auto 0 0 0; padding: 40px 18px 14px;
   font-size: .8rem; color: var(--sediment-200);
-  background: linear-gradient(transparent, rgba(12,11,14,.9));
+  background: linear-gradient(transparent, var(--scrim-strong));
 }
 
 /* ---------- RESEARCH · Core sample showcase ---------- */
-.research { background: linear-gradient(180deg, #17141a, #1b1410 60%, #1d1712); }
+.research { background: linear-gradient(180deg, var(--layer-sed-a), var(--layer-deep) 60%, #2b2126); }
 .core-rack { display: grid; gap: 18px; margin-top: 44px; }
 
 .core-sample {
@@ -578,7 +731,7 @@ body.has-header { padding-top: var(--header-h); }
 }
 
 /* ---------- Testimonials ---------- */
-.testimonials { background: linear-gradient(180deg, #1d1712, #191512); }
+.testimonials { background: linear-gradient(180deg, #2b2126, var(--layer-mantle)); }
 .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 44px; }
 .testimonial-card {
   padding: 28px; border-radius: var(--radius-md);
@@ -607,7 +760,7 @@ body.has-header { padding-top: var(--header-h); }
 .author-role { display: block; font-size: .78rem; color: var(--text-muted); }
 
 /* ---------- Gallery ---------- */
-.gallery { background: linear-gradient(180deg, #191512, #17141a); }
+.gallery { background: linear-gradient(180deg, var(--layer-mantle), #31242b); }
 .gallery-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 18px; margin-top: 44px;
@@ -635,7 +788,7 @@ body.has-header { padding-top: var(--header-h); }
 /* Lightbox */
 .lightbox {
   position: fixed; inset: 0; z-index: 10000;
-  background: rgba(9,8,10,.94); backdrop-filter: blur(8px);
+  background: var(--scrim-strong); backdrop-filter: blur(8px);
   display: grid; place-items: center; padding: 24px;
   opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s;
 }
@@ -661,14 +814,14 @@ body.has-header { padding-top: var(--header-h); }
 .lightbox-prev { left: 18px; } .lightbox-next { right: 18px; }
 
 /* ---------- Field map ---------- */
-.field-map { background: linear-gradient(180deg, #17141a, #1a1410); }
+.field-map { background: linear-gradient(180deg, #31242b, var(--layer-core)); }
 .map-shell { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 22px; margin-top: 44px; }
 @media (max-width: 900px) { .map-shell { grid-template-columns: 1fr; } }
 .map-canvas {
   height: 480px; border-radius: var(--radius-md); overflow: hidden;
   border: 1px solid var(--line-soft); filter: saturate(.75) contrast(1.05);
 }
-.leaflet-container { background: #14131a; }
+.leaflet-container { background: var(--map-bg); }
 .custom-map-pin i { font-size: 30px; text-shadow: 0 4px 10px rgba(0,0,0,.6); }
 .map-popup { font-family: var(--font-body); line-height: 1.5; }
 .map-popup-role { display: block; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--terracotta); }
@@ -701,14 +854,14 @@ body.has-header { padding-top: var(--header-h); }
 /* ---------- CONTACT · Mantle / Core ---------- */
 .contact {
   background:
-    radial-gradient(700px 420px at 50% 115%, rgba(217,126,74,.35), transparent 65%),
-    radial-gradient(1100px 600px at 50% 130%, rgba(224,169,95,.25), transparent 60%),
-    linear-gradient(180deg, #1a1410 0%, #241309 60%, #2e1707 100%);
+    radial-gradient(700px 420px at 50% 115%, rgba(221,139,98,.32), transparent 65%),
+    radial-gradient(1100px 600px at 50% 130%, rgba(230,184,119,.22), transparent 60%),
+    linear-gradient(180deg, var(--layer-core) 0%, #4a2a1c 60%, #55331f 100%);
 }
 .contact-card {
   margin-top: 44px; padding: clamp(28px, 5vw, 56px);
   border-radius: var(--radius-lg);
-  background: rgba(12,11,14,.55); border: 1px solid var(--line);
+  background: var(--scrim); border: 1px solid var(--line);
   backdrop-filter: blur(6px);
   display: grid; gap: 26px; justify-items: center; text-align: center;
   box-shadow: 0 0 120px rgba(217,126,74,.15) inset;
@@ -734,7 +887,7 @@ body.has-header { padding-top: var(--header-h); }
 
 /* ---------- FOOTER · Inner core ---------- */
 .site-footer {
-  background: linear-gradient(180deg, #2e1707, #120a06 70%, var(--basalt-950));
+  background: linear-gradient(180deg, #55331f, #241812 70%, var(--basalt-950));
   padding: 70px 0 40px; position: relative;
 }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
@@ -793,133 +946,6 @@ body.has-header { padding-top: var(--header-h); }
   .map-canvas { height: 360px; }
 }
 
-/* ==========================================================================
-   GEO LAB — 20 interactive geological event modules
-   Card shell, instrument-style controls and discipline grids.
-   ========================================================================== */
-.geolabs { background: linear-gradient(180deg, #141018 0%, #171219 55%, #1a1310 100%); }
-
-.geo-index {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin: 34px 0 10px; padding: 0; list-style: none;
-}
-.geo-index a {
-  font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .04em;
-  color: var(--sediment-300, #d3bd9c);
-  border: 1px solid rgba(224,169,95,.22); border-radius: 999px;
-  padding: 6px 12px; text-decoration: none; white-space: nowrap;
-  transition: background .2s ease, border-color .2s ease, color .2s ease;
-}
-.geo-index a:hover, .geo-index a:focus-visible {
-  background: rgba(224,169,95,.12); border-color: #e0a95f; color: #f1e7d8; outline: none;
-}
-
-.geo-cat { margin-top: 54px; }
-.geo-cat__title {
-  font-family: "IBM Plex Mono", monospace; font-weight: 600;
-  font-size: clamp(.85rem, 1.6vw, 1.05rem); letter-spacing: .22em;
-  color: #e0a95f; margin: 0 0 22px; display: flex; align-items: center; gap: 16px;
-}
-.geo-cat__title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(224,169,95,.5), transparent); }
-
-.geo-lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 26px; }
-
-.geo-lab {
-  position: relative; display: flex; flex-direction: column;
-  background: linear-gradient(180deg, rgba(43,41,48,.55), rgba(20,19,23,.85));
-  border: 1px solid rgba(224,169,95,.16); border-radius: 14px;
-  overflow: hidden; box-shadow: 0 18px 40px -24px rgba(0,0,0,.8);
-}
-.geo-lab::before { /* thin mineral vein along the top edge */
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(224,169,95,.55) 30%, rgba(182,85,46,.6) 70%, transparent);
-}
-/* self-contained entrance (cards are injected after initReveals() collects
-   its targets, so they cannot use the site-wide .reveal mechanism) */
-@keyframes geoLabIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
-.geo-lab--enter { animation: geoLabIn .7s var(--ease, cubic-bezier(.2,.7,.2,1)) both; animation-delay: calc(var(--geo-i, 0) * 60ms); }
-@media (prefers-reduced-motion: reduce) { .geo-lab--enter { animation: none; } }
-.geo-lab__head { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px 10px; }
-.geo-lab__num {
-  font-family: "IBM Plex Mono", monospace; font-size: 1.5rem; font-weight: 600;
-  color: rgba(224,169,95,.85); line-height: 1; min-width: 2ch;
-}
-.geo-lab__title { font-size: 1.06rem; margin: 0 0 4px; color: #f1e7d8; font-weight: 700; letter-spacing: .01em; }
-.geo-lab__desc { margin: 0; font-size: .82rem; line-height: 1.55; color: #b3a795; }
-.geo-lab__cat {
-  margin-left: auto; flex: none; font-family: "IBM Plex Mono", monospace;
-  font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
-  color: #7b8f6a; border: 1px solid rgba(123,143,106,.4); border-radius: 999px; padding: 4px 9px;
-}
-
-.geo-lab__stage { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #0d0b0e; }
-.geo-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; cursor: crosshair; }
-.geo-hint {
-  position: absolute; left: 12px; bottom: 10px; margin: 0; pointer-events: none;
-  font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .05em;
-  color: rgba(236,227,212,.55); background: rgba(12,11,14,.55);
-  padding: 4px 8px; border-radius: 6px; backdrop-filter: blur(2px); max-width: 85%;
-}
-
-.geo-lab__bar {
-  display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center;
-  padding: 14px 20px 18px; border-top: 1px solid rgba(224,169,95,.12);
-  background: rgba(12,11,14,.4);
-}
-.geo-ctl { display: flex; flex-direction: column; gap: 6px; min-width: 140px; flex: 1 1 140px; }
-.geo-ctl--toggle, .geo-ctl--readout { flex: 0 0 auto; min-width: 0; }
-.geo-ctl__name {
-  font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .1em;
-  text-transform: uppercase; color: #8f8577;
-}
-.geo-ctl__val {
-  font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: #e0a95f; align-self: flex-end; margin-top: -20px;
-}
-
-/* instrument sliders */
-.geo-ctl input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; cursor: ew-resize; }
-.geo-ctl input[type="range"]:focus-visible { outline: 2px solid rgba(224,169,95,.6); outline-offset: 4px; border-radius: 4px; }
-.geo-ctl input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px; border-radius: 2px;
-  background: linear-gradient(90deg, var(--terracotta, #b6552e), rgba(224,169,95,.35));
-}
-.geo-ctl input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%;
-  background: #e0a95f; border: 2px solid #141317; box-shadow: 0 0 0 1px rgba(224,169,95,.5), 0 0 12px rgba(224,169,95,.45);
-}
-.geo-ctl input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #b6552e, rgba(224,169,95,.35)); }
-.geo-ctl input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #e0a95f; border: 2px solid #141317; }
-
-/* segmented control */
-.geo-seg { display: inline-flex; border: 1px solid rgba(224,169,95,.25); border-radius: 8px; overflow: hidden; }
-.geo-seg__btn {
-  font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .04em;
-  background: transparent; color: #b3a795; border: 0; padding: 7px 12px; cursor: pointer;
-  transition: background .18s ease, color .18s ease;
-}
-.geo-seg__btn + .geo-seg__btn { border-left: 1px solid rgba(224,169,95,.2); }
-.geo-seg__btn.is-on { background: rgba(224,169,95,.16); color: #f1e7d8; box-shadow: inset 0 -2px 0 #e0a95f; }
-.geo-seg__btn:hover { color: #f1e7d8; }
-.geo-seg__btn:focus-visible { outline: 2px solid #e0a95f; outline-offset: -2px; }
-
-/* toggle button */
-.geo-toggle {
-  font-family: "IBM Plex Mono", monospace; font-size: .7rem; letter-spacing: .05em;
-  background: rgba(182,85,46,.14); color: #e0a95f;
-  border: 1px solid rgba(224,169,95,.4); border-radius: 8px;
-  padding: 8px 14px; cursor: pointer; transition: all .18s ease; white-space: nowrap;
-}
-.geo-toggle:hover { background: rgba(224,169,95,.2); }
-.geo-toggle[aria-pressed="true"] { background: #e0a95f; color: #141317; box-shadow: 0 0 18px rgba(224,169,95,.5); }
-.geo-toggle:focus-visible { outline: 2px solid #e0a95f; outline-offset: 2px; }
-
-/* live readouts */
-.geo-readout {
-  display: flex; flex-direction: column; gap: 2px;
-  font-family: "IBM Plex Mono", monospace; min-width: 92px;
-}
-.geo-readout em { font-style: normal; font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: #8f8577; }
-.geo-readout b { font-size: .95rem; color: #f1e7d8; font-weight: 600; }
 
 /* hero strata background canvas */
 .hero-bg-canvas {
@@ -928,15 +954,37 @@ body.has-header { padding-top: var(--header-h); }
 }
 .hero .wrap { position: relative; z-index: 1; }
 
-/* reduced motion & small screens */
-@media (prefers-reduced-motion: reduce) {
-  .geo-canvas { opacity: .95; }
+/* ==========================================================================
+   THEME REFRESH v2 — light-mode legibility & animation polish
+   ========================================================================== */
+[data-theme="light"] ::selection { background: var(--terracotta-2); color: #fff; }
+[data-theme="light"] .photo-card,
+[data-theme="light"] .about-photo,
+[data-theme="light"] .mentor-photo { box-shadow: 0 24px 54px rgba(76, 58, 40, .22); }
+[data-theme="light"] .unit-node { background: var(--basalt-900); }
+[data-theme="light"] .custom-map-pin i, [data-theme="light"] .custom-map-pin span { text-shadow: 0 4px 10px rgba(76,58,40,.35); }
+[data-theme="light"] .thin-section { mix-blend-mode: multiply; opacity: .25; }
+[data-theme="light"] .grain { opacity: .035; }
+[data-theme="light"] .map-popup-org { color: #6f6557; }
+
+/* Layered wave on the hero headline + lead */
+.wave-word { display: inline-block; }
+#typing-text.in-wave .wave-letter { animation-duration: 3.4s; }
+.hero h1 .wave-letter { font-family: inherit; }
+
+/* Skill chips breathe in a gentle stagger */
+.skill-list li { animation: chipFloat 4.8s ease-in-out infinite; animation-delay: calc(var(--sk-i, 0) * 220ms); }
+@keyframes chipFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.skill-list li:hover { animation-play-state: paused; }
+
+/* Section titles shimmer (wavy gradient sweep) once revealed */
+.section-title.fault-split.in-view { animation: faultShift .9s var(--ease) both, titleShimmer 5s ease-in-out 1s infinite; }
+@keyframes titleShimmer {
+  0%, 100% { background-position: 200% 0; }
+  50%      { background-position: -100% 0; }
 }
-@media (max-width: 640px) {
-  .geo-lab__stage { aspect-ratio: 4 / 3; }
-  .geo-lab__bar { gap: 10px 12px; padding: 12px 14px 14px; }
-  .geo-ctl { min-width: 110px; flex-basis: 110px; }
-  .geo-lab__head { padding: 14px 14px 8px; }
-  .geo-lab__cat { display: none; }
-  .geo-index a { font-size: .6rem; padding: 5px 9px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-list li { animation: none; }
+  .section-title.fault-split.in-view { animation: faultShift .01ms both; }
 }

@@ -1,0 +1,177 @@
+<!-- ======================================================================
+     ARCHIVED: "The Geo Lab — Three Photorealistic WebGL Instruments"
+     Extracted verbatim from index.html on 2026-10-10 during the portfolio
+     refresh. To restore: paste this block back into <main> right after the
+     #research section, re-add the script tags listed in README.md here, and
+     re-append css/geolab-archive.css to css/strata.css.
+     ====================================================================== -->
+
+  <!-- Fault divider: Core → Geo Labs -->
+  <div class="fault" aria-hidden="true" style="--p-from:#1d1712;--p-to:#141018">
+    <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
+      <g class="plate-group"><path class="plate-a" d="M-40 0 H660 L600 90 H-40 Z"/></g>
+      <g class="plate-group"><path class="plate-b" d="M660 0 H1240 V90 H600 Z"/></g>
+      <path class="vein" d="M660 0 L600 90"/>
+    </svg>
+  </div>
+
+  <!-- ===== GEO LAB — 3 WEBGL INSTRUMENT MODULES (Three.js) ===== -->
+  <section id="geolabs" class="geolabs stratum" aria-labelledby="geolabs-heading">
+    <div class="wrap">
+      <p class="layer-tag">Geotechnical Instruments · WebGL / GLSL Physics</p>
+      <h2 id="geolabs-heading" class="section-title fault-split">The Geo Lab — Three Photorealistic WebGL Instruments</h2>
+      <p class="section-sub">
+        The former grid of abstract canvas loops has been refactored down to three high-fidelity
+        WebGL instruments grounded in real optics and geotechnical physics: birefringence under
+        cross-polarized light, Boussinesq&thinsp;/&thinsp;Mohr-Coulomb stress tensors beneath a foundation,
+        and seismic slope stability with live Factor-of-Safety dynamics. Each renderer is GPU-accelerated
+        with custom GLSL shaders, runs only while scrolled into view, scales quality to your hardware,
+        and falls back to a static render where WebGL is unavailable.
+      </p>
+
+      <div id="geo-instruments">
+
+        <!-- ============ MODULE 01 · THIN SECTION XPL ============ -->
+        <article class="geo-lab geo-mod instrument" id="geolab-xpl" data-module="xpl">
+          <div class="geo-lab__head">
+            <span class="geo-lab__num">01</span>
+            <div>
+              <h3 class="geo-lab__title">Optical Petrographic Thin-Section — Cross-Polarized Light</h3>
+              <p class="geo-lab__desc">A 30&nbsp;&micro;m slice of granitic rock under the petrographic microscope.
+                Grains of quartz, plagioclase, biotite and olivine flash their Michel-L&eacute;vy interference
+                colours as the rotatable polarizers sweep through extinction — computed per pixel in GLSL from
+                real birefringence (&Delta;n) values.</p>
+            </div>
+            <span class="geo-lab__cat">Mineral Optics</span>
+          </div>
+          <div class="geo-lab__stage">
+            <canvas class="gl-canvas" aria-label="WebGL thin-section microscope view under cross-polarized light"></canvas>
+            <img class="gl-fallback" src="image/fallback-xpl.svg" alt="Static preview of a petrographic thin section under cross-polarized light" loading="lazy" decoding="async">
+            <div class="gl-hud mono" data-hud aria-hidden="true"></div>
+            <p class="geo-hint">Drag inside the field of view to rotate the polarizer stage</p>
+          </div>
+          <aside class="instrument__controls" aria-label="Thin-section controls">
+            <label class="geo-ctl geo-ctl--range dial-ctl">
+              <span class="geo-ctl__name">Stage Angle &middot; Polarizer</span>
+              <input type="range" min="0" max="360" step="1" value="0" data-ctl="angle" aria-label="Stage angle, degrees">
+              <output class="geo-ctl__val" data-out="angle">0&deg;</output>
+            </label>
+            <div class="geo-ctl geo-ctl--seg">
+              <span class="geo-ctl__name">Magnification</span>
+              <span class="geo-seg" role="radiogroup" aria-label="Objective magnification">
+                <button type="button" class="geo-seg__btn is-on" role="radio" aria-checked="true"  data-ctl="zoom" data-value="10">10&times;</button>
+                <button type="button" class="geo-seg__btn"       role="radio" aria-checked="false" data-ctl="zoom" data-value="20">20&times;</button>
+                <button type="button" class="geo-seg__btn"       role="radio" aria-checked="false" data-ctl="zoom" data-value="40">40&times;</button>
+              </span>
+            </div>
+            <div class="geo-ctl geo-ctl--seg">
+              <span class="geo-ctl__name">Polarizer State</span>
+              <span class="geo-seg" role="radiogroup" aria-label="Light mode">
+                <button type="button" class="geo-seg__btn"       role="radio" aria-checked="false" data-ctl="pol" data-value="ppl">PPL</button>
+                <button type="button" class="geo-seg__btn is-on" role="radio" aria-checked="true"  data-ctl="pol" data-value="xpl">XPL</button>
+              </span>
+            </div>
+            <label class="geo-readout"><em>Retardance &Gamma;</em><b data-ro="ret">--- nm</b></label>
+            <label class="geo-readout"><em>Extinction</em><b data-ro="ext">---</b></label>
+          </aside>
+        </article>
+
+        <!-- ============ MODULE 02 · STRATA STRESS TENSOR ============ -->
+        <article class="geo-lab geo-mod instrument" id="geolab-strata" data-module="strata">
+          <div class="geo-lab__head">
+            <span class="geo-lab__num">02</span>
+            <div>
+              <h3 class="geo-lab__title">Subsurface Strata &amp; Geotechnical Load Stress Tensor</h3>
+              <p class="geo-lab__desc">A photorealistic 3D terrain block — regolith over schist over gneissic
+                bedrock, built from procedural heightmaps, normal maps and PBR rock textures. A foundation pad
+                applies load; the bulb of transmitted stress follows Boussinesq's elastic solution, coloured by
+                the Mohr-Coulomb shear ratio, with effective stress &sigma;' = &sigma; &minus; u responding to
+                pore water pressure in real time.</p>
+            </div>
+            <span class="geo-lab__cat">Geotechnics</span>
+          </div>
+          <div class="geo-lab__stage">
+            <canvas class="gl-canvas" aria-label="WebGL 3D subsurface strata block with stress overlay"></canvas>
+            <img class="gl-fallback" src="image/fallback-strata.svg" alt="Static preview of a 3D geological strata block with a stress bulb overlay" loading="lazy" decoding="async">
+            <div class="gl-hud mono" data-hud aria-hidden="true"></div>
+            <p class="geo-hint">Orbit: drag to rotate &middot; wheel or pinch to zoom</p>
+          </div>
+          <aside class="instrument__controls" aria-label="Strata stress controls">
+            <label class="geo-ctl geo-ctl--range">
+              <span class="geo-ctl__name">Structural Load Q</span>
+              <input type="range" min="0" max="1000" step="10" value="450" data-ctl="load" aria-label="Structural load in kilonewtons">
+              <output class="geo-ctl__val" data-out="load">450 kN</output>
+            </label>
+            <label class="geo-ctl geo-ctl--range">
+              <span class="geo-ctl__name">Pore Water Pressure u</span>
+              <input type="range" min="0" max="200" step="5" value="0" data-ctl="u" aria-label="Pore water pressure in kilopascals">
+              <output class="geo-ctl__val" data-out="u">0 kPa</output>
+            </label>
+            <div class="geo-ctl geo-ctl--seg">
+              <span class="geo-ctl__name">Display Mode</span>
+              <span class="geo-seg" role="radiogroup" aria-label="Display mode">
+                <button type="button" class="geo-seg__btn is-on" role="radio" aria-checked="true"  data-ctl="mode" data-value="photo">Photoreal</button>
+                <button type="button" class="geo-seg__btn"       role="radio" aria-checked="false" data-ctl="mode" data-value="wire">Stress Vectors</button>
+                <button type="button" class="geo-seg__btn"       role="radio" aria-checked="false" data-ctl="mode" data-value="heat">Shear Heatmap</button>
+              </span>
+            </div>
+            <label class="geo-readout"><em>&sigma;z @ 3 m</em><b data-ro="sz">--- kPa</b></label>
+            <label class="geo-readout"><em>&tau;max</em><b data-ro="tau">--- kPa</b></label>
+            <label class="geo-readout"><em>&sigma;' eff.</em><b data-ro="se">--- kPa</b></label>
+          </aside>
+        </article>
+
+        <!-- ============ MODULE 03 · SLOPE FAILURE ============ -->
+        <article class="geo-lab geo-mod instrument" id="geolab-slope" data-module="slope">
+          <div class="geo-lab__head">
+            <span class="geo-lab__num">03</span>
+            <div>
+              <h3 class="geo-lab__title">Active Slope Failure &amp; Seismic Rupture Dynamics</h3>
+              <p class="geo-lab__desc">A Himalayan rock slope (Lesser Himalayan Gneiss, after the Tipura-Jalthan
+                type landslide) dissected by a relict joint at dip &beta;. Pseudo-static seismic loading raises the
+                driving share of gravity; when the dynamic Factor of Safety drops below 1.0, a particle-based
+                debris avalanche propagates along the shear plane.</p>
+            </div>
+            <span class="geo-lab__cat">Slope Mechanics</span>
+          </div>
+          <div class="geo-lab__stage">
+            <canvas class="gl-canvas" aria-label="WebGL 3D slope with particle debris flow simulation"></canvas>
+            <img class="gl-fallback" src="image/fallback-slope.svg" alt="Static preview of a 3D mountain slope failure simulation" loading="lazy" decoding="async">
+            <div class="gl-hud mono" data-hud aria-hidden="true"></div>
+            <div class="fo-meter" data-fo aria-hidden="true">
+              <span class="fo-meter__label mono">FoS</span>
+              <span class="fo-meter__value mono" data-ro="fo">—</span>
+              <span class="fo-meter__bar"><i data-fo-bar></i></span>
+              <span class="fo-meter__state mono" data-ro="fostate">STANDBY</span>
+            </div>
+            <p class="geo-hint">Orbit: drag to rotate &middot; wheel or pinch to zoom</p>
+          </div>
+          <aside class="instrument__controls" aria-label="Slope stability controls">
+            <label class="geo-ctl geo-ctl--range">
+              <span class="geo-ctl__name">Seismic Accel. PGA</span>
+              <input type="range" min="0" max="0.6" step="0.01" value="0.10" data-ctl="pga" aria-label="Peak ground acceleration in g">
+              <output class="geo-ctl__val" data-out="pga">0.10 g</output>
+            </label>
+            <label class="geo-ctl geo-ctl--range">
+              <span class="geo-ctl__name">Joint Dip &beta;</span>
+              <input type="range" min="20" max="50" step="1" value="34" data-ctl="beta" aria-label="Joint dip angle in degrees">
+              <output class="geo-ctl__val" data-out="beta">34&deg;</output>
+            </label>
+            <label class="geo-ctl geo-ctl--range">
+              <span class="geo-ctl__name">Cohesion c</span>
+              <input type="range" min="0" max="300" step="5" value="120" data-ctl="coh" aria-label="Joint cohesion in kilopascals">
+              <output class="geo-ctl__val" data-out="coh">120 kPa</output>
+            </label>
+            <label class="geo-ctl geo-ctl--range">
+              <span class="geo-ctl__name">Friction &phi;</span>
+              <input type="range" min="20" max="45" step="1" value="32" data-ctl="phi" aria-label="Basic friction angle in degrees">
+              <output class="geo-ctl__val" data-out="phi">32&deg;</output>
+            </label>
+            <button type="button" class="btn btn-primary geo-trigger-btn" data-ctl="rupture">Trigger Rupture</button>
+            <button type="button" class="geo-reset-btn" data-ctl="reset">&#8635; Reset Slope</button>
+          </aside>
+        </article>
+
+      </div>
+    </div>
+  </section>

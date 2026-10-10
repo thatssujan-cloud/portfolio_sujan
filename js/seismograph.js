@@ -90,6 +90,20 @@
     samples.shift();
   }
 
+  /* ---- Theme-aware ink colours (refreshed soft palette + light/dark switch) ---- */
+  const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const INK = { a: '', b: '', c: '', grid: '', glow: '', pen: '' };
+  function refreshInk() {
+    INK.a    = cssVar('--seismo-a')    || 'rgba(192,106,74,0.55)';
+    INK.b    = cssVar('--seismo-b')    || 'rgba(230,184,119,0.75)';
+    INK.c    = cssVar('--seismo-c')    || 'rgba(221,139,98,0.55)';
+    INK.grid = cssVar('--seismo-grid') || 'rgba(230,184,119,0.05)';
+    INK.glow = cssVar('--seismo-glow') || 'rgba(230,184,119,0.5)';
+    INK.pen  = cssVar('--seismo-pen')  || '#f4d08f';
+  }
+  refreshInk();
+  document.addEventListener('strata:themechange', refreshInk);
+
   /* ---- Render ---- */
   function draw() {
     ctx.clearRect(0, 0, W, H);
@@ -99,7 +113,7 @@
     const dx = W / (samples.length - 1);
 
     // faint grid ticks like a drum seismograph
-    ctx.strokeStyle = 'rgba(224,169,95,0.05)';
+    ctx.strokeStyle = INK.grid;
     ctx.lineWidth = 1;
     ctx.beginPath();
     for (let gx = 0; gx < W; gx += 90) { ctx.moveTo(gx, midY - span - 18); ctx.lineTo(gx, midY + span + 18); }
@@ -107,12 +121,12 @@
 
     // main trace with glow gradient
     const grad = ctx.createLinearGradient(0, 0, W, 0);
-    grad.addColorStop(0, 'rgba(182,85,46,0.55)');
-    grad.addColorStop(0.5, 'rgba(224,169,95,0.75)');
-    grad.addColorStop(1, 'rgba(217,126,74,0.55)');
+    grad.addColorStop(0, INK.a);
+    grad.addColorStop(0.5, INK.b);
+    grad.addColorStop(1, INK.c);
 
     ctx.lineJoin = 'round';
-    ctx.shadowColor = 'rgba(224,169,95,0.5)';
+    ctx.shadowColor = INK.glow;
     ctx.shadowBlur = 10;
     ctx.strokeStyle = grad;
     ctx.lineWidth = 1.6;
@@ -127,7 +141,7 @@
 
     // leading stylus dot
     const ly = midY - samples[samples.length - 1] * span * 2.2;
-    ctx.fillStyle = '#f2c66d';
+    ctx.fillStyle = INK.pen;
     ctx.beginPath();
     ctx.arc(W - 2, ly, 3, 0, Math.PI * 2);
     ctx.fill();

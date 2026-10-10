@@ -1,0 +1,152 @@
+/* ==========================================================================
+   ARCHIVED STYLESHEET — Geo Lab WebGL instruments (removed from strata.css
+   on 2026-10-10). Keep alongside archive/geolab-webgl/geolab-section.html.
+   ========================================================================== */
+
+/* ==========================================================================
+   GEO LAB — 20 interactive geological event modules
+   Card shell, instrument-style controls and discipline grids.
+   ========================================================================== */
+.geolabs { background: linear-gradient(180deg, #141018 0%, #171219 55%, #1a1310 100%); }
+
+.geo-index {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 34px 0 10px; padding: 0; list-style: none;
+}
+.geo-index a {
+  font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .04em;
+  color: var(--sediment-300, #d3bd9c);
+  border: 1px solid rgba(224,169,95,.22); border-radius: 999px;
+  padding: 6px 12px; text-decoration: none; white-space: nowrap;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.geo-index a:hover, .geo-index a:focus-visible {
+  background: rgba(224,169,95,.12); border-color: #e0a95f; color: #f1e7d8; outline: none;
+}
+
+.geo-cat { margin-top: 54px; }
+.geo-cat__title {
+  font-family: "IBM Plex Mono", monospace; font-weight: 600;
+  font-size: clamp(.85rem, 1.6vw, 1.05rem); letter-spacing: .22em;
+  color: #e0a95f; margin: 0 0 22px; display: flex; align-items: center; gap: 16px;
+}
+.geo-cat__title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(224,169,95,.5), transparent); }
+
+.geo-lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 26px; }
+
+.geo-lab {
+  position: relative; display: flex; flex-direction: column;
+  background: linear-gradient(180deg, rgba(43,41,48,.55), rgba(20,19,23,.85));
+  border: 1px solid rgba(224,169,95,.16); border-radius: 14px;
+  overflow: hidden; box-shadow: 0 18px 40px -24px rgba(0,0,0,.8);
+}
+.geo-lab::before { /* thin mineral vein along the top edge */
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(224,169,95,.55) 30%, rgba(182,85,46,.6) 70%, transparent);
+}
+/* self-contained entrance (cards are injected after initReveals() collects
+   its targets, so they cannot use the site-wide .reveal mechanism) */
+@keyframes geoLabIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+.geo-lab--enter { animation: geoLabIn .7s var(--ease, cubic-bezier(.2,.7,.2,1)) both; animation-delay: calc(var(--geo-i, 0) * 60ms); }
+@media (prefers-reduced-motion: reduce) { .geo-lab--enter { animation: none; } }
+.geo-lab__head { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px 10px; }
+.geo-lab__num {
+  font-family: "IBM Plex Mono", monospace; font-size: 1.5rem; font-weight: 600;
+  color: rgba(224,169,95,.85); line-height: 1; min-width: 2ch;
+}
+.geo-lab__title { font-size: 1.06rem; margin: 0 0 4px; color: #f1e7d8; font-weight: 700; letter-spacing: .01em; }
+.geo-lab__desc { margin: 0; font-size: .82rem; line-height: 1.55; color: #b3a795; }
+.geo-lab__cat {
+  margin-left: auto; flex: none; font-family: "IBM Plex Mono", monospace;
+  font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+  color: #7b8f6a; border: 1px solid rgba(123,143,106,.4); border-radius: 999px; padding: 4px 9px;
+}
+
+.geo-lab__stage { position: relative; width: 100%; aspect-ratio: 16 / 10; background: #0d0b0e; }
+.geo-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; cursor: crosshair; }
+.geo-hint {
+  position: absolute; left: 12px; bottom: 10px; margin: 0; pointer-events: none;
+  font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .05em;
+  color: rgba(236,227,212,.55); background: rgba(12,11,14,.55);
+  padding: 4px 8px; border-radius: 6px; backdrop-filter: blur(2px); max-width: 85%;
+}
+
+.geo-lab__bar {
+  display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center;
+  padding: 14px 20px 18px; border-top: 1px solid rgba(224,169,95,.12);
+  background: rgba(12,11,14,.4);
+}
+.geo-ctl { display: flex; flex-direction: column; gap: 6px; min-width: 140px; flex: 1 1 140px; }
+.geo-ctl--toggle, .geo-ctl--readout { flex: 0 0 auto; min-width: 0; }
+.geo-ctl__name {
+  font-family: "IBM Plex Mono", monospace; font-size: .62rem; letter-spacing: .1em;
+  text-transform: uppercase; color: #8f8577;
+}
+.geo-ctl__val {
+  font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: #e0a95f; align-self: flex-end; margin-top: -20px;
+}
+
+/* instrument sliders */
+.geo-ctl input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; cursor: ew-resize; }
+.geo-ctl input[type="range"]:focus-visible { outline: 2px solid rgba(224,169,95,.6); outline-offset: 4px; border-radius: 4px; }
+.geo-ctl input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--terracotta, #b6552e), rgba(224,169,95,.35));
+}
+.geo-ctl input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%;
+  background: #e0a95f; border: 2px solid #141317; box-shadow: 0 0 0 1px rgba(224,169,95,.5), 0 0 12px rgba(224,169,95,.45);
+}
+.geo-ctl input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, #b6552e, rgba(224,169,95,.35)); }
+.geo-ctl input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #e0a95f; border: 2px solid #141317; }
+
+/* segmented control */
+.geo-seg { display: inline-flex; border: 1px solid rgba(224,169,95,.25); border-radius: 8px; overflow: hidden; }
+.geo-seg__btn {
+  font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .04em;
+  background: transparent; color: #b3a795; border: 0; padding: 7px 12px; cursor: pointer;
+  transition: background .18s ease, color .18s ease;
+}
+.geo-seg__btn + .geo-seg__btn { border-left: 1px solid rgba(224,169,95,.2); }
+.geo-seg__btn.is-on { background: rgba(224,169,95,.16); color: #f1e7d8; box-shadow: inset 0 -2px 0 #e0a95f; }
+.geo-seg__btn:hover { color: #f1e7d8; }
+.geo-seg__btn:focus-visible { outline: 2px solid #e0a95f; outline-offset: -2px; }
+
+/* toggle button */
+.geo-toggle {
+  font-family: "IBM Plex Mono", monospace; font-size: .7rem; letter-spacing: .05em;
+  background: rgba(182,85,46,.14); color: #e0a95f;
+  border: 1px solid rgba(224,169,95,.4); border-radius: 8px;
+  padding: 8px 14px; cursor: pointer; transition: all .18s ease; white-space: nowrap;
+}
+.geo-toggle:hover { background: rgba(224,169,95,.2); }
+.geo-toggle[aria-pressed="true"] { background: #e0a95f; color: #141317; box-shadow: 0 0 18px rgba(224,169,95,.5); }
+.geo-toggle:focus-visible { outline: 2px solid #e0a95f; outline-offset: 2px; }
+
+/* live readouts */
+.geo-readout {
+  display: flex; flex-direction: column; gap: 2px;
+  font-family: "IBM Plex Mono", monospace; min-width: 92px;
+}
+.geo-readout em { font-style: normal; font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: #8f8577; }
+.geo-readout b { font-size: .95rem; color: #f1e7d8; font-weight: 600; }
+
+/* hero strata background canvas */
+.hero-bg-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none; opacity: .9;
+}
+.hero .wrap { position: relative; z-index: 1; }
+
+/* reduced motion & small screens */
+@media (prefers-reduced-motion: reduce) {
+  .geo-canvas { opacity: .95; }
+}
+@media (max-width: 640px) {
+  .geo-lab__stage { aspect-ratio: 4 / 3; }
+  .geo-lab__bar { gap: 10px 12px; padding: 12px 14px 14px; }
+  .geo-ctl { min-width: 110px; flex-basis: 110px; }
+  .geo-lab__head { padding: 14px 14px 8px; }
+  .geo-lab__cat { display: none; }
+  .geo-index a { font-size: .6rem; padding: 5px 9px; }
+}
