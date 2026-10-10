@@ -512,13 +512,13 @@ function initMap() {
 }
 
 /* ==========================================================================
-   8. GEO LAB — mount the 20 interactive geological event simulations
-   (framework: js/geolabs-core.js · modules: js/geolabs-{tectonics,volcano,
-   geomorph,sediment,petrology,planetary}.js)
+   8. GEO LAB — mount the 3 photorealistic WebGL instrument modules
+   (framework: js/geoweb-core.js · modules: js/geoweb-{xpl,strata,slope}.js)
+   The legacy 20-canvas loop registry (geolabs-core + geolabs-*) has been
+   refactored away; only the hero strata canvas still uses GeoLabs.attachCustom.
    ========================================================================== */
 function initGeoLabs() {
-  if (!window.GeoLabs) return;
-  window.GeoLabs.renderInto('#geo-labs-root');
+  if (window.GeoWeb && window.GeoWeb.boot) window.GeoWeb.boot('#geo-instruments');
 }
 
 /* ==========================================================================
