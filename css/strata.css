@@ -268,6 +268,23 @@ button { font: inherit; cursor: pointer; background: none; border: 0; color: inh
 
 main { position: relative; z-index: 2; }
 
+/* Fixed top-right corner GIF (image/om.gif). Sits above all content
+   (header is z-index 1000) but stays small and offset below the header
+   so it never covers nav/UI. */
+.corner-gif {
+  position: fixed;
+  top: calc(var(--header-h, 64px) + 12px);
+  right: 16px;
+  width: clamp(48px, 6vw, 84px);
+  height: auto;
+  z-index: 1100;
+  border-radius: 8px;
+  opacity: .92;
+}
+@media (max-width: 640px) {
+  .corner-gif { width: 44px; right: 10px; top: calc(var(--header-h, 64px) + 8px); }
+}
+
 /* ---------- Header ---------- */
 body.has-header { padding-top: var(--header-h); }
 .site-header {
