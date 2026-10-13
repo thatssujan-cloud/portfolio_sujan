@@ -268,21 +268,47 @@ button { font: inherit; cursor: pointer; background: none; border: 0; color: inh
 
 main { position: relative; z-index: 2; }
 
-/* Fixed top-right corner GIF (image/om.gif). Sits above all content
-   (header is z-index 1000) but stays small and offset below the header
-   so it never covers nav/UI. */
-.corner-gif {
+/* ---------- Fixed top-right OM animation (pure SVG/CSS, no GIF) ----------
+   A dashed ring slowly revolves around a ॐ glyph. Fixed position keeps it
+   in the corner while scrolling; z-index floats it above all content but
+   pointer-events:none ensures it never blocks clicks on the UI beneath. */
+.corner-om {
   position: fixed;
   top: calc(var(--header-h, 64px) + 12px);
   right: 16px;
-  width: clamp(48px, 6vw, 84px);
+  width: clamp(48px, 6vw, 76px);
   height: auto;
+  aspect-ratio: 1 / 1;
   z-index: 1100;
-  border-radius: 8px;
-  opacity: .92;
+  color: var(--accent, #d4a24e);
+  opacity: .85;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .35));
+  pointer-events: none; /* decorative — never intercepts clicks */
+}
+/* Ring revolves at a slightly slow speed */
+.corner-om .om-ring {
+  transform-origin: 50% 50%;
+  animation: om-revolve 18s linear infinite;
+}
+@keyframes om-revolve {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+/* Gentle breathing of the glyph so it feels alive, not spinning text */
+.corner-om .om-glyph {
+  transform-origin: 50% 50%;
+  animation: om-breathe 6s ease-in-out infinite;
+}
+@keyframes om-breathe {
+  0%, 100% { transform: scale(1);    opacity: .9; }
+  50%      { transform: scale(1.07); opacity: 1;  }
 }
 @media (max-width: 640px) {
-  .corner-gif { width: 44px; right: 10px; top: calc(var(--header-h, 64px) + 8px); }
+  .corner-om { width: 44px; right: 10px; top: calc(var(--header-h, 64px) + 8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .corner-om .om-ring,
+  .corner-om .om-glyph { animation: none; }
 }
 
 /* ---------- Header ---------- */
