@@ -20,7 +20,7 @@
   <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
 
   <!-- Site stylesheet — STRATA design system -->
-  <link rel="stylesheet" href="css/strata.css?v=4">
+  <link rel="stylesheet" href="css/strata.css?v=5">
 </head>
 <body class="has-header">
 
@@ -30,8 +30,13 @@
 <canvas id="seismo-canvas" aria-hidden="true"></canvas>
 <!-- Sediment grain overlay -->
 <div class="grain" aria-hidden="true"></div>
-<!-- Fixed corner GIF -->
-<img src="image/om.gif" alt="" class="corner-gif">
+<!-- Fixed corner OM animation (revolving ॐ glyph, pure SVG/CSS) -->
+<div class="corner-om" aria-hidden="true">
+  <svg viewBox="0 0 100 100" width="100%" height="100%" focusable="false">
+    <circle class="om-ring" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"/>
+    <text class="om-glyph" x="50" y="54" text-anchor="middle" dominant-baseline="central" font-size="52" fill="currentColor">&#x0950;</text>
+  </svg>
+</div>
 
 <!-- ======================== HEADER ======================== -->
 <header class="site-header" role="banner">
