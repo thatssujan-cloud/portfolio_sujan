@@ -79,6 +79,7 @@
 
 /* ---------- LIGHT THEME — sunlit limestone plateau ---------- */
 [data-theme="light"] {
+  background: var(--bg); /* opaque base for light mode (applied to <html>) */
   --basalt-950: #f7f2e8;
   --basalt-900: #efe6d6;
   --basalt-850: #e7dcc8;
@@ -204,6 +205,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
+  /* Base page colour lives on <html> (dark default, overridden to --bg by the
+     light theme below) so the fixed #seismo-canvas — z-index:-1, painted on
+     <body> — renders ON TOP of it and stays visible behind the semi-transparent
+     section washes. */
+  background: #17151c;
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-h);
   font-size: 16px;
@@ -212,7 +218,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--bg);
+  /* Must stay transparent — body was painting an opaque sheet on top of the
+     fixed #seismo-canvas (z-index:-1), hiding the seismograph animation. */
+  background: transparent;
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
@@ -244,9 +252,12 @@ button { font: inherit; cursor: pointer; background: none; border: 0; color: inh
 .skip-link:focus { top: 12px; color: var(--basalt-950); }
 
 /* ---------- Global canvas layers ---------- */
+/* Seismograph sits at the very back of the stack (z-index -1) so it can never
+   be covered by auto-stacking section backgrounds, and pointer-events:none
+   keeps it from blocking any clicks. */
 #seismo-canvas {
   position: fixed; inset: 0; width: 100%; height: 100%;
-  z-index: 0; pointer-events: none; opacity: .5;
+  z-index: -1; pointer-events: none; opacity: .5;
   transition: opacity .4s ease;
 }
 [data-theme="light"] #seismo-canvas { opacity: .38; }
@@ -399,7 +410,7 @@ body.has-header { padding-top: var(--header-h); }
   background:
     radial-gradient(1100px 500px at 80% -10%, rgba(192,106,74,.16), transparent 60%),
     radial-gradient(900px 600px at 10% 110%, rgba(230,184,119,.09), transparent 55%),
-    linear-gradient(180deg, var(--layer-surface-a) 0%, #201c2a 55%, var(--basalt-950) 100%);
+    linear-gradient(180deg, rgba(29,26,38,.55) 0%, rgba(32,28,42,.45) 55%, rgba(23,21,28,.55) 100%);
   padding-top: var(--header-h);
   overflow: hidden;
 }
@@ -478,7 +489,9 @@ body.has-header { padding-top: var(--header-h); }
 @keyframes drill { 0% { transform: scaleY(0); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: top; } 100% { opacity: 0; transform: scaleY(1); } }
 
 /* ---------- ABOUT · Weathered Regolith ---------- */
-.about { background: linear-gradient(180deg, var(--basalt-950), var(--layer-regolith)); }
+/* Semi-transparent washes: --bg is now applied to the html element, so these
+   translucent gradients let the fixed seismograph canvas show through. */
+.about { background: linear-gradient(180deg, rgba(29, 26, 38, .55), rgba(36, 30, 34, .45)); }
 .about-grid {
   display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
   gap: clamp(28px, 5vw, 64px); align-items: start;
@@ -637,7 +650,7 @@ body.has-header { padding-top: var(--header-h); }
 .volunteer-list span { color: var(--text-muted); font-size: .85rem; }
 
 /* ---------- Mentors ---------- */
-.mentors { background: linear-gradient(180deg, #262031, var(--layer-sed-b)); }
+.mentors { background: linear-gradient(180deg, rgba(38,32,49,.5), rgba(34,29,41,.42)); }
 .mentor-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 34px; }
 .mentor-photo {
   border-radius: var(--radius-md); overflow: hidden;
@@ -653,7 +666,7 @@ body.has-header { padding-top: var(--header-h); }
 }
 
 /* ---------- RESEARCH · Core sample showcase ---------- */
-.research { background: linear-gradient(180deg, var(--layer-sed-a), var(--layer-deep) 60%, #2b2126); }
+.research { background: linear-gradient(180deg, rgba(34,29,41,.45), rgba(41,31,32,.42) 60%, rgba(43,33,38,.5)); }
 .core-rack { display: grid; gap: 18px; margin-top: 44px; }
 
 .core-sample {
@@ -731,7 +744,7 @@ body.has-header { padding-top: var(--header-h); }
 }
 
 /* ---------- Testimonials ---------- */
-.testimonials { background: linear-gradient(180deg, #2b2126, var(--layer-mantle)); }
+.testimonials { background: linear-gradient(180deg, rgba(43,33,38,.5), rgba(53,32,27,.45)); }
 .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 44px; }
 .testimonial-card {
   padding: 28px; border-radius: var(--radius-md);
@@ -760,7 +773,7 @@ body.has-header { padding-top: var(--header-h); }
 .author-role { display: block; font-size: .78rem; color: var(--text-muted); }
 
 /* ---------- Gallery ---------- */
-.gallery { background: linear-gradient(180deg, var(--layer-mantle), #31242b); }
+.gallery { background: linear-gradient(180deg, rgba(53,32,27,.45), rgba(49,36,43,.5)); }
 .gallery-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 18px; margin-top: 44px;
@@ -814,7 +827,7 @@ body.has-header { padding-top: var(--header-h); }
 .lightbox-prev { left: 18px; } .lightbox-next { right: 18px; }
 
 /* ---------- Field map ---------- */
-.field-map { background: linear-gradient(180deg, #31242b, var(--layer-core)); }
+.field-map { background: linear-gradient(180deg, rgba(49,36,43,.5), rgba(66,35,26,.45)); }
 .map-shell { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 22px; margin-top: 44px; }
 @media (max-width: 900px) { .map-shell { grid-template-columns: 1fr; } }
 .map-canvas {
@@ -856,7 +869,7 @@ body.has-header { padding-top: var(--header-h); }
   background:
     radial-gradient(700px 420px at 50% 115%, rgba(221,139,98,.32), transparent 65%),
     radial-gradient(1100px 600px at 50% 130%, rgba(230,184,119,.22), transparent 60%),
-    linear-gradient(180deg, var(--layer-core) 0%, #4a2a1c 60%, #55331f 100%);
+    linear-gradient(180deg, rgba(66,35,26,.45) 0%, rgba(74,42,28,.4) 60%, rgba(85,51,31,.5) 100%);
 }
 .contact-card {
   margin-top: 44px; padding: clamp(28px, 5vw, 56px);
@@ -887,7 +900,7 @@ body.has-header { padding-top: var(--header-h); }
 
 /* ---------- FOOTER · Inner core ---------- */
 .site-footer {
-  background: linear-gradient(180deg, #55331f, #241812 70%, var(--basalt-950));
+  background: linear-gradient(180deg, rgba(85,51,31,.5), rgba(36,24,18,.45) 70%, rgba(23,21,28,.55));
   padding: 70px 0 40px; position: relative;
 }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
@@ -987,4 +1000,46 @@ body.has-header { padding-top: var(--header-h); }
 @media (prefers-reduced-motion: reduce) {
   .skill-list li { animation: none; }
   .section-title.fault-split.in-view { animation: faultShift .01ms both; }
+}
+
+/* ---------- Seismograph visibility fix: light-theme translucent washes ---------- */
+[data-theme="light"] .hero        { background:
+    radial-gradient(1100px 500px at 80% -10%, rgba(173,78,38,.10), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, rgba(192,138,62,.08), transparent 55%),
+    linear-gradient(180deg, rgba(247,242,232,.55) 0%, rgba(242,233,218,.45) 55%, rgba(242,233,218,.55) 100%); }
+[data-theme="light"] .about       { background: linear-gradient(180deg, rgba(247,242,232,.55), rgba(242,233,218,.45)); }
+[data-theme="light"] .mentors     { background: linear-gradient(180deg, rgba(238,227,208,.5), rgba(238,227,208,.42)); }
+[data-theme="light"] .research    { background: linear-gradient(180deg, rgba(238,227,208,.45), rgba(234,220,196,.42) 60%, rgba(234,220,196,.5)); }
+[data-theme="light"] .testimonials{ background: linear-gradient(180deg, rgba(234,220,196,.5), rgba(236,214,189,.45)); }
+[data-theme="light"] .gallery     { background: linear-gradient(180deg, rgba(236,214,189,.45), rgba(236,214,189,.5)); }
+[data-theme="light"] .field-map   { background: linear-gradient(180deg, rgba(236,214,189,.5), rgba(232,203,168,.45)); }
+[data-theme="light"] .contact     { background:
+    radial-gradient(700px 420px at 50% 115%, rgba(194,100,59,.22), transparent 65%),
+    radial-gradient(1100px 600px at 50% 130%, rgba(192,138,62,.18), transparent 60%),
+    linear-gradient(180deg, rgba(232,203,168,.45) 0%, rgba(232,203,168,.4) 60%, rgba(232,203,168,.5) 100%); }
+[data-theme="light"] .site-footer { background: linear-gradient(180deg, rgba(232,203,168,.5), rgba(226,192,150,.45) 70%, rgba(247,242,232,.55)); }
+
+/* Users who opt out of translucency get the original solid strata back. */
+@media (prefers-reduced-transparency: reduce) {
+  body { background: var(--bg); }
+  .about        { background: linear-gradient(180deg, var(--basalt-950), var(--layer-regolith)); }
+  .hero         { background:
+      radial-gradient(1100px 500px at 80% -10%, rgba(192,106,74,.16), transparent 60%),
+      radial-gradient(900px 600px at 10% 110%, rgba(230,184,119,.09), transparent 55%),
+      linear-gradient(180deg, var(--layer-surface-a) 0%, #201c2a 55%, var(--basalt-950) 100%); }
+  .mentors      { background: linear-gradient(180deg, #262031, var(--layer-sed-b)); }
+  .research     { background: linear-gradient(180deg, var(--layer-sed-a), var(--layer-deep) 60%, #2b2126); }
+  .testimonials { background: linear-gradient(180deg, #2b2126, var(--layer-mantle)); }
+  .gallery      { background: linear-gradient(180deg, var(--layer-mantle), #31242b); }
+  .field-map    { background: linear-gradient(180deg, #31242b, var(--layer-core)); }
+  .contact      { background:
+      radial-gradient(700px 420px at 50% 115%, rgba(221,139,98,.32), transparent 65%),
+      radial-gradient(1100px 600px at 50% 130%, rgba(230,184,119,.22), transparent 60%),
+      linear-gradient(180deg, var(--layer-core) 0%, #4a2a1c 60%, #55331f 100%); }
+  .site-footer  { background: linear-gradient(180deg, #55331f, #241812 70%, var(--basalt-950)); }
+  [data-theme="light"] .hero, [data-theme="light"] .about, [data-theme="light"] .mentors,
+  [data-theme="light"] .research, [data-theme="light"] .testimonials, [data-theme="light"] .gallery,
+  [data-theme="light"] .field-map, [data-theme="light"] .contact, [data-theme="light"] .site-footer {
+    background: var(--bg);
+  }
 }
