@@ -32,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,600&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Site stylesheet — STRATA design system -->
-  <link rel="stylesheet" href="css/strata.css?v=6">
+  <link rel="stylesheet" href="css/strata.css?v=7">
 
   <!-- Structured data: Person (validated schema.org vocabulary) -->
   <script type="application/ld+json">
@@ -509,7 +509,26 @@
       <p class="layer-tag">Field Photography · With Captions</p>
       <h2 id="gallery-heading" class="section-title fault-split">Fieldwork</h2>
       <p class="section-sub">Site supervision, surveying and foundation work across Taplejung’s terrain. Select any photo to enlarge it (keyboard: Enter to open, arrow keys to browse, Escape to close).</p>
-      <div class="gallery-grid" id="gallery-grid"></div>
+      <div class="gallery-grid" id="gallery-grid">
+        <noscript>
+          <figure class="gallery-item">
+            <img src="image/field2.jpeg" alt="Field crew inspecting a boundary marker at a transmission tower site overlooking a valley" width="800" height="600" loading="lazy" decoding="async">
+            <figcaption>Tower boundary-marker inspection, Mewa–Changhe 132 kV alignment, Taplejung (Civil Sub-Engineer, RPGCL).</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="image/field4.jpeg" alt="Field crew reviewing a foundation excavation pit on a grassy hillside" width="800" height="600" loading="lazy" decoding="async">
+            <figcaption>Test-pit / foundation excavation review with the site crew, tower footing in Taplejung (supervising Sub-Engineer).</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="image/field6.jpeg" alt="Completed reinforced concrete tower foundation base ready for steel erection" width="800" height="600" loading="lazy" decoding="async">
+            <figcaption>Completed RC tower foundation base signed off before steel erection, RPGCL project, Taplejung (quality control).</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="image/field7.jpeg" alt="Two engineers walking across a foundation platform on a steep slope" width="800" height="600" loading="lazy" decoding="async">
+            <figcaption>Walking the platform during a site visit.</figcaption>
+          </figure>
+        </noscript>
+      </div>
     </div>
   </section>
 
@@ -531,10 +550,20 @@
 
       <div class="map-shell">
         <div id="travelMap" class="map-canvas" role="application" tabindex="0"
-          aria-label="Interactive map of Nepal showing five travelled places for fieldwork, research and academic locations. The same locations are listed as text above; use the legend buttons to navigate to specific sites."></div>
+          aria-label="Interactive map of Nepal showing five travelled places for fieldwork, research and academic locations. The same locations are listed as text above; use the legend buttons to navigate to specific sites.">
+          <noscript><div class="map-static-note"><p>The interactive map requires JavaScript — every place is listed above with its coordinates.</p><ul class="map-key"><li><span class="legend-dot legend-dot--work" aria-hidden="true"></span> Field work</li><li><span class="legend-dot legend-dot--research" aria-hidden="true"></span> Research</li><li><span class="legend-dot legend-dot--study" aria-hidden="true"></span> Academic</li></ul></div></noscript>
+        </div>
         <aside class="map-legend" aria-label="Places legend">
           <h3 class="map-legend-title">Places I've Travelled</h3>
-          <ul class="map-legend-list" id="map-legend-list"></ul>
+          <ul class="map-legend-list" id="map-legend-list">
+            <noscript>
+              <li><span class="legend-dot legend-dot--work" aria-hidden="true"></span><span class="legend-text"><strong>Taplejung</strong><em>RPGCL · Mewa–Changhe 132 kV Transmission Line</em></span></li>
+              <li><span class="legend-dot legend-dot--work" aria-hidden="true"></span><span class="legend-text"><strong>Madhyaphawa Khola</strong><em>Hydroelectric site investigation (OJT)</em></span></li>
+              <li><span class="legend-dot legend-dot--research" aria-hidden="true"></span><span class="legend-text"><strong>Rasuwagadhi–Kerung</strong><em>Published flood dynamics study · GeoWorld Journal</em></span></li>
+              <li><span class="legend-dot legend-dot--research" aria-hidden="true"></span><span class="legend-text"><strong>Jajarkot</strong><em>Seismic micro-zonation study (in progress)</em></span></li>
+              <li><span class="legend-dot legend-dot--study" aria-hidden="true"></span><span class="legend-text"><strong>Kathmandu</strong><em>Tri-Chandra Multiple Campus, Tribhuvan University</em></span></li>
+            </noscript>
+          </ul>
           <ul class="map-key" aria-label="Map symbol key">
             <li><span class="legend-dot legend-dot--work" aria-hidden="true"></span> Field work</li>
             <li><span class="legend-dot legend-dot--research" aria-hidden="true"></span> Research</li>
@@ -553,9 +582,38 @@
       <h2 id="mentors-heading" class="section-title fault-split">Mentors &amp; Testimonials</h2>
       <p class="section-sub">Guidance from academic mentors, and short accounts from people I have worked with. Additional references available on request.</p>
       <p class="mentors-lead">Grateful for the academic mentors who shaped my path into geology research.</p>
-      <div class="mentor-strip" id="mentor-strip"></div>
+      <div class="mentor-strip" id="mentor-strip">
+        <noscript>
+          <figure class="mentor-photo">
+            <img src="image/with-professor.jpeg" alt="Sujan Paudyal standing with his geology professor from Tri-Chandra Multiple Campus" width="600" height="450" loading="lazy" decoding="async">
+            <figcaption>With a geology mentor from Tri-Chandra Multiple Campus</figcaption>
+          </figure>
+          <figure class="mentor-photo">
+            <img src="image/professor.jpeg" alt="Sujan Paudyal in discussion with an academic mentor about graduate research directions" width="600" height="450" loading="lazy" decoding="async">
+            <figcaption>Discussing research directions ahead of graduate applications</figcaption>
+          </figure>
+        </noscript>
+      </div>
       <h3 class="subsection-title">What People Say</h3>
-      <div class="testimonials-grid" id="testimonials-grid"></div>
+      <div class="testimonials-grid" id="testimonials-grid">
+        <noscript>
+          <article class="testimonial-card">
+            <span class="testimonial-badge">Academic Mentor</span>
+            <blockquote class="testimonial-content"><p class="testimonial-text">“Sujan demonstrates exceptional attention to detail in geological fieldwork and communicates complex terrain analysis in a way that helps bridge geology and engineering teams.”</p></blockquote>
+            <footer class="testimonial-author"><span class="author-avatar" aria-hidden="true">RN</span><span class="author-info"><span class="author-name">Dr. Ramesh Neupane</span><span class="author-role">Geology Professor, Tri-Chandra Multiple Campus</span></span></footer>
+          </article>
+          <article class="testimonial-card">
+            <span class="testimonial-badge">Field Colleague</span>
+            <blockquote class="testimonial-content"><p class="testimonial-text">“On our transmission line project, Sujan’s foundation inspections caught several critical site issues early. His systematic approach to slope stability saved us both time and risk.”</p></blockquote>
+            <footer class="testimonial-author"><span class="author-avatar" aria-hidden="true">PS</span><span class="author-info"><span class="author-name">Prakash Sharma</span><span class="author-role">Site Engineer, RPGCL Taplejung Project</span></span></footer>
+          </article>
+          <article class="testimonial-card">
+            <span class="testimonial-badge">Project Lead</span>
+            <blockquote class="testimonial-content"><p class="testimonial-text">“Sujan’s contribution to our hydroelectric site assessment was thorough and well-documented. His geological insights shaped our entire site layout strategy.”</p></blockquote>
+            <footer class="testimonial-author"><span class="author-avatar" aria-hidden="true">AP</span><span class="author-info"><span class="author-name">Anita Poudel</span><span class="author-role">Project Lead, Madhyaphawa Khola Hydroelectric</span></span></footer>
+          </article>
+        </noscript>
+      </div>
     </div>
   </section>
 
@@ -617,19 +675,20 @@
 </div>
 
 <noscript>
-  <p style="text-align:center;padding:20px;color:#b3a795">JavaScript is disabled — all qualifications, experience, education, projects and contact details above remain fully readable. The gallery thumbnails still display with captions; the interactive map and animations require JavaScript.</p>
+  <p style="text-align:center;padding:20px;color:#b3a795">JavaScript is disabled — all qualifications, experience, education, projects and contact details above remain fully readable. Fieldwork photos, mentor photos, testimonials and the places legend are also shown statically; only the interactive map pan/zoom requires JavaScript.</p>
 </noscript>
 
 <!-- ======================== SCRIPTS ======================== -->
 <!-- Optional libraries load LAST and fail-safe: every essential section is already rendered in static HTML above. -->
+<!-- Leaflet (map) loads FIRST so it is guaranteed available before main.js runs -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <script src="js/data.js" defer></script>
 <script src="js/theme-switcher.js" defer></script>
 <script src="js/main.js" defer></script>
 <script src="js/seismograph.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="js/three-hero.js" defer></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <!-- GSAP parallax removed: decorative only, and its CDN failure previously risked blocking rendering -->
 
 </body>

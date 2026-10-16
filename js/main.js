@@ -1,32 +1,38 @@
 /* ==========================================================================
-   STRATA MAIN — ENHANCEMENT LAYER ONLY
-   All essential content (biography, qualifications, skills, experience,
-   projects, research, education, field sites, contact) is pre-rendered as
-   static HTML in index.html. This script never blocks recruiters from
-   reading it: if data.js, GSAP, Three.js or Leaflet fail to load, the page
-   still works. Here we only ADD interactivity:
+   STRATA MAIN — ENHANCEMENT LAYER + STATIC FALLBACKS
+   Essential content (biography, qualifications, skills, experience,
+   projects, research, education, places, mentors, testimonials, contact)
+   is pre-rendered as static HTML in index.html. The gallery, mentor photos,
+   testimonials and map legend are ALSO rendered statically inside
+   <noscript>, so they remain visible even if JavaScript is disabled or a
+   CDN script fails. When JS runs normally this script renders the richer,
+   interactive versions from data.js into the same containers:
      · mobile navigation (aria-expanded, Escape, close on select)
-     · scroll-reveal + active-nav highlighting
+     · scroll-reveal + active-nav highlighting (with safety sweep)
      · accordion behaviour for the statically rendered project/research cards
      · gallery rendering + accessible lightbox (focus trap, Esc, arrows)
      · mentor photos + testimonials + map legend (decorative enrichment)
-     · Leaflet map initialised ON DEMAND (when its <details> is opened)
+     · Leaflet map initialised on load, with retry if the CDN script is still loading
      · copy buttons for email/phone
    ========================================================================== */
 'use strict';
 
-const D = window.STRATA_DATA || null;
+/* If data.js failed to load, keep going anyway — every other enhancement
+   must still work instead of throwing at parse time. */
+const D = window.STRATA_DATA || { gallery: [], testimonials: [], mentors: { photos: [] }, mapSites: [] };
 
 /* ---------- tiny DOM helpers ---------- */
 const $  = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
 /* Safe element factory: plain text via textContent, structure via child
-   elements. Never interpolates untrusted strings into innerHTML. */
-function make(tag, cls, text) {
+   elements. Never interpolates untrusted strings into innerHTML. Accepts a
+   string OR an already-built Element as the third argument. */
+function make(tag, cls, content) {
   const n = document.createElement(tag);
   if (cls) n.className = cls;
-  if (text !== undefined && text !== null) n.textContent = text;
+  if (content instanceof Node) n.appendChild(content);
+  else if (content !== undefined && content !== null) n.textContent = content;
   return n;
 }
 function makeLink(href, text, opts = {}) {
@@ -99,9 +105,11 @@ function initNav() {
    2. SCROLL REVEALS (all content visible without JS / reduced motion)
    ========================================================================== */
 function initReveals() {
-  const targets = $$('.reveal, .reveal-shift');
+  const revealAll = () => $$('.reveal:not(.visible), .reveal-shift:not(.visible)')
+    .forEach(t => t.classList.add('visible'));
+
   if (reduceMotion || !('IntersectionObserver' in window)) {
-    targets.forEach(t => t.classList.add('visible'));
+    revealAll();
     return;
   }
   const io = new IntersectionObserver((entries, obs) => {
@@ -109,7 +117,20 @@ function initReveals() {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
   }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
-  targets.forEach(t => io.observe(t));
+  $$('.reveal, .reveal-shift').forEach(t => io.observe(t));
+
+  /* Safety sweep: anything still hidden after load (e.g. elements that were
+     inside a collapsed container when first observed, or missed by the
+     observer on fast scrolls) is revealed once the page has settled. This
+     guarantees no section can stay blank. */
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      $$('.reveal:not(.visible), .reveal-shift:not(.visible)').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 1.2) el.classList.add('visible');
+      });
+    });
+  });
 }
 
 /* ==========================================================================
@@ -143,7 +164,7 @@ function initCores() {
    4. GALLERY + LIGHTBOX (rendered here because the lightbox needs a JS-managed
    focus trap; static equivalents exist as captions inside each figure)
    ========================================================================== */
-const GALLERY = D ? D.gallery : [];
+const GALLERY = D.gallery || [];
 
 function renderGallery() {
   const grid = $('#gallery-grid');
@@ -229,100 +250,147 @@ function initLightbox() {
 
 /* ==========================================================================
    5. MENTOR PHOTOS + TESTIMONIALS + MAP LEGEND (enrichment from data.js)
+   Shared builders are also reused for the <noscript> static fallbacks in
+   index.html so both versions look identical.
    ========================================================================== */
+function buildTestimonialCard(t) {
+  const card = make('article', 'testimonial-card reveal');
+  card.appendChild(make('span', 'testimonial-badge', t.badge));
+  const bq = make('blockquote', 'testimonial-content');
+  bq.appendChild(make('p', 'testimonial-text', `“${t.text}”`));
+  card.appendChild(bq);
+  const footer = make('footer', 'testimonial-author');
+  const avatar = make('span', 'author-avatar', t.initials);
+  avatar.setAttribute('aria-hidden', 'true');
+  const info = make('span', 'author-info');
+  info.appendChild(make('span', 'author-name', t.name));
+  info.appendChild(make('span', 'author-role', t.role));
+  footer.append(avatar, info);
+  card.appendChild(footer);
+  return card;
+}
+
+function buildMentorFigure(p) {
+  const fig = make('figure', 'mentor-photo reveal');
+  fig.appendChild(makeImg(p.src, p.alt, 600, 450, true));
+  fig.appendChild(make('figcaption', null, p.caption));
+  return fig;
+}
+
+function buildLegendItem(s) {
+  const li = document.createElement('li');
+  const btn = make('button', 'map-legend-item');
+  btn.type = 'button';
+  btn.dataset.site = s.id;
+  btn.setAttribute('aria-pressed', 'false');
+  const dot = make('span', `legend-dot legend-dot--${s.type}`);
+  dot.setAttribute('aria-hidden', 'true');
+  const txt = make('span', 'legend-text');
+  txt.appendChild(make('strong', null, s.name));
+  txt.appendChild(make('em', null, s.org));
+  btn.append(dot, txt);
+  li.appendChild(btn);
+  return li;
+}
+
 function renderEnrichments() {
-  if (!D) return;
+  if (!window.STRATA_DATA) return;
 
   /* Mentors strip */
   const strip = $('#mentor-strip');
   if (strip) {
-    (D.mentors?.photos || []).forEach(p => {
-      const fig = make('figure', 'mentor-photo reveal');
-      fig.appendChild(makeImg(p.src, p.alt, 600, 450, true));
-      fig.appendChild(make('figcaption', null, p.caption));
-      strip.appendChild(fig);
-    });
+    (D.mentors?.photos || []).forEach(p => strip.appendChild(buildMentorFigure(p)));
   }
 
   /* Testimonials */
   const tgrid = $('#testimonials-grid');
   if (tgrid) {
-    (D.testimonials || []).forEach(t => {
-      const card = make('article', 'testimonial-card reveal');
-      card.appendChild(make('span', 'testimonial-badge', t.badge));
-      const bq = make('blockquote', 'testimonial-content');
-      bq.appendChild(make('p', 'testimonial-text', `“${t.text}”`));
-      card.appendChild(bq);
-      const footer = make('footer', 'testimonial-author');
-      const avatar = make('span', 'author-avatar', t.initials);
-      avatar.setAttribute('aria-hidden', 'true');
-      const info = make('span', 'author-info');
-      info.appendChild(make('span', 'author-name', t.name));
-      info.appendChild(make('span', 'author-role', t.role));
-      footer.appendChild(avatar);
-      footer.appendChild(info);
-      card.appendChild(footer);
-      tgrid.appendChild(card);
-    });
+    (D.testimonials || []).forEach(t => tgrid.appendChild(buildTestimonialCard(t)));
   }
 
   /* Map legend buttons */
   const legendList = $('#map-legend-list');
   if (legendList) {
-    (D.mapSites || []).forEach(s => {
-      const li = make('li');
-      const btn = make('button', 'map-legend-item');
-      btn.type = 'button';
-      btn.dataset.site = s.id;
-      btn.setAttribute('aria-pressed', 'false');
-      const dot = make('span', `legend-dot legend-dot--${s.type}`);
-      dot.setAttribute('aria-hidden', 'true');
-      const txt = make('span', 'legend-text');
-      txt.appendChild(make('strong', null, s.name));
-      txt.appendChild(make('em', null, s.org));
-      btn.appendChild(dot);
-      btn.appendChild(txt);
-      li.appendChild(btn);
-      legendList.appendChild(li);
-    });
+    (D.mapSites || []).forEach(s => legendList.appendChild(buildLegendItem(s)));
   }
 }
 
 /* ==========================================================================
    6. NEPAL MAP (Leaflet) — the "Places I've Travelled" map is shown inline;
-   initialised once Leaflet is available. Text list of places is in the HTML.
+   initialised once Leaflet is available, and fits itself to Nepal's extent.
+   Text list of places is in the HTML.
    ========================================================================== */
 let mapInited = false, mapInstance = null;
 
 function initMap() {
   const mapEl = $('#travelMap');
-  if (!mapEl || mapInited || typeof L === 'undefined' || !D) return;
+  if (!mapEl || mapInited || !window.STRATA_DATA) return;
+  // Leaflet may still be loading (CDN script) or blocked (offline/ad-block) —
+  // retry briefly, then show a graceful message instead of an empty grey box.
+  if (typeof L === 'undefined') {
+    if (!(initMap._tries > 20)) {
+      initMap._tries = (initMap._tries || 0) + 1;
+      setTimeout(initMap, 250);
+    } else if (mapEl && !mapEl.dataset.mapUnavailable) {
+      mapEl.dataset.mapUnavailable = 'true';
+      mapEl.classList.add('map-unavailable');
+      mapEl.textContent = 'The interactive map could not load (no network connection). All places are listed above with their coordinates.';
+    }
+    return;
+  }
   mapInited = true;
 
-  const PIN_COLORS = { work: '#c98d5f', research: '#6aaee6', study: '#d8b25f' };
+  // Pin colours match the legend dots in css/strata.css
+  const PIN_COLORS = { work: '#52b788', research: '#6aaee6', study: '#d8b25f' };
   try {
     mapInstance = L.map(mapEl, {
-      center: [28.3949, 84.124], zoom: 7, minZoom: 6, maxZoom: 17,
+      center: [28.3949, 83.9], zoom: 7, minZoom: 5, maxZoom: 17,
       scrollWheelZoom: false, keyboard: true, zoomControl: true
     });
   } catch (e) { mapInited = false; return; }
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(mapInstance);
+  // Tile layer with two CDN fallbacks so the map still works if one host fails
+  const TILE_SOURCES = [
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+  ];
+  let tileIndex = 0, tilesFailed = 0;
+  function addTileLayer(url) {
+    L.tileLayer(url, {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    })
+      .on('tileerror', function () {
+        tilesFailed += 1;
+        // Switch source only if this layer keeps failing (avoid flapping on
+        // the occasional single missing tile)
+        if (tileIndex < TILE_SOURCES.length - 1 && tilesFailed >= 6) {
+          tileIndex += 1;
+          tilesFailed = 0;
+          mapInstance.removeLayer(this);
+          addTileLayer(TILE_SOURCES[tileIndex]);
+        }
+      })
+      .addTo(mapInstance);
+  }
+  addTileLayer(TILE_SOURCES[0]);
 
-  // Nepal boundary overlay so the map clearly reads as a map of Nepal
+  /* Nepal country boundary — bundled locally (no network dependency), drawn
+     as a warm ochre outline that matches the site palette, with a soft fill
+     inside the border so the shape clearly reads as "the map of Nepal".
+     The map view is then fitted exactly to the country's extent. */
   try {
-    fetch('https://raw.githubusercontent.com/glynnbird/countriesgeojson/master/nepal.geojson')
+    fetch('nepal.geojson')
       .then(r => (r.ok ? r.json() : Promise.reject(new Error('boundary unavailable'))))
       .then(geo => {
         if (!mapInstance) return;
         const boundary = L.geoJSON(geo, {
-          style: { color: '#c98d5f', weight: 2, fillColor: '#c98d5f', fillOpacity: 0.06, dashArray: '6 4' },
+          style: { color: '#cf9768', weight: 3, opacity: 0.95, fillColor: '#cf9768', fillOpacity: 0.10 },
           interactive: false
         }).addTo(mapInstance);
         boundary.bringToBack();
+        // Fit the whole of Nepal into view (with room for the pins)
+        mapInstance.fitBounds(boundary.getBounds().pad(0.06));
       })
       .catch(() => { /* boundary is decorative — tiles already show Nepal */ });
   } catch (e) { /* fetch unsupported — ignore */ }
