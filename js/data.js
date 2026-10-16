@@ -8,29 +8,28 @@
 window.STRATA_DATA = {
   meta: {
     name: 'Sujan Paudyal',
-    title: 'Geologist & Civil Engineer',
-    tagline: 'I Study the Ground Beneath What We Build.',
-    eyebrow: 'Understanding the Earth Beneath Us'
+    title: 'Civil Sub-Engineer & Geologist',
+    tagline: 'Sujan Paudyal — Civil Sub-Engineer & Geologist',
+    eyebrow: 'B.Sc. Geology · Civil Sub-Engineer · Nepal'
   },
 
   hero: {
-    lead: "I'm Sujan Paudyal, an Assistant Geologist with 3+ years of field experience. I'm passionate about geology, glaciology, and exploring the processes that shape the Himalayan landscape.",
+    lead: "I hold a B.Sc. in Geology from Tribhuvan University and work as a Civil Sub-Engineer on RPGCL's Mewa-Changhe 132 kV transmission line in Taplejung, delivering foundation geology, surveying and slope-stability work across Himalayan terrain for 3+ years.",
     credential: 'B.Sc. Geology · Trichandra Multiple Campus, Tribhuvan University',
     photo: 'image/fied3.jpeg',
     photoAlt: 'Sujan Paudyal standing in front of the Pathibhara temple in Taplejung, Nepal',
     actions: [
-      { label: 'View core samples', href: '#research', style: 'primary' },
-      { label: 'Download CV', href: 'CV_SUJAN_PAUDYAL.pdf', download: true, style: 'ghost' },
-      { label: 'Meet My Friends', href: 'my-friends.html', target: '_blank', style: 'copper' }
+      { label: 'Download CV', href: 'CV_SUJAN_PAUDYAL.pdf', download: true, style: 'primary' },
+      { label: 'View Projects', href: '#projects', style: 'ghost' },
+      { label: 'Contact Me', href: '#contact', style: 'ghost' }
     ]
   },
 
   about: {
-    tagline: 'Where geology meets construction — reading the ground before the first footing is poured.',
+    tagline: 'Quick summary for recruiters — full details follow in Experience, Projects and Education.',
     paragraphs: [
-      'I\'m Sujan Paudyal, a geology graduate from Tri-Chandra Multiple Campus, Tribhuvan University, and currently a <span class="accent-term">Civil Sub-Engineer</span> on an active 132&nbsp;kV transmission line project in Taplejung. My work sits at the intersection of two disciplines: understanding what the ground is made of, and building safely on top of it.',
-      'Across steep Himalayan terrain, that means <em>geological mapping, rock and soil identification, and slope stability assessments</em> on one side, and <em>foundation supervision, site leveling, and construction quality control</em> on the other. That dual lens has shaped my published research on flood dynamics and slope stability, and it now guides how I read a hillside before it\'s ever touched by a footing.',
-      'Explore my research and fieldwork below, or reach out to talk about academic collaboration, geotechnical consulting, or graduate opportunities.'
+      'I am Sujan Paudyal, a geology graduate (B.Sc., Tri-Chandra Multiple Campus, Tribhuvan University) working as a Civil Sub-Engineer on a live 132 kV transmission-line project in Taplejung for Rastriya Prasaran Grid Company Limited (RPGCL). My work combines geological mapping, rock and soil identification and slope-stability screening with foundation supervision, surveying and construction quality control in complex Himalayan terrain.',
+      'Beyond site work, I have published research on transboundary flood dynamics at Rasuwagadhi-Kerung and am currently pursuing a seismic micro-zonation study of Jajarkot. I am open to geotechnical consulting, field-geology positions and graduate research opportunities.'
     ],
     photo: 'image/filed3.jpeg',
     photoAlt: 'Sujan Paudyal examining foliated rock strata during a geological field survey in the Himalayas',
@@ -206,9 +205,9 @@ window.STRATA_DATA = {
   ],
 
   gallery: [
-    { src: 'image/field2.jpeg', caption: 'Site inspection at a tower boundary marker', alt: 'Field crew inspecting a boundary marker at a transmission tower site overlooking a valley' },
-    { src: 'image/field4.jpeg', caption: 'Foundation excavation review with the crew', alt: 'Field crew reviewing a foundation excavation pit on a grassy hillside' },
-    { src: 'image/field6.jpeg', caption: 'Completed foundation base, ready for erection', alt: 'Completed reinforced concrete tower foundation base ready for steel erection' },
+    { src: 'image/field2.jpeg', caption: 'Tower boundary-marker inspection, Mewa-Changhe 132 kV alignment, Taplejung (Civil Sub-Engineer, RPGCL).', alt: 'Field crew inspecting a boundary marker at a transmission tower site overlooking a valley' },
+    { src: 'image/field4.jpeg', caption: 'Test-pit / foundation excavation review with the site crew, tower footing in Taplejung (supervising Sub-Engineer).', alt: 'Field crew reviewing a foundation excavation pit on a grassy hillside' },
+    { src: 'image/field6.jpeg', caption: 'Completed RC tower foundation base signed off before steel erection, RPGCL project, Taplejung (quality control).', alt: 'Completed reinforced concrete tower foundation base ready for steel erection' },
     { src: 'image/field7.jpeg', caption: 'Walking the platform during a site visit', alt: 'Two engineers walking across a foundation platform on a steep slope' }
   ],
 

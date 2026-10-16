@@ -10,7 +10,8 @@
 
 (function initCrystalHero() {
   const stage = document.getElementById('crystal-stage');
-  if (!stage || typeof THREE === 'undefined') return;
+  if (!stage) return;
+  if (typeof THREE === 'undefined') { stage.classList.add('no-webgl'); return; }
 
   // WebGL capability check
   try {
@@ -227,11 +228,41 @@
     stage.classList.remove('dragging');
   });
 
+  /* ---------- Accessibility: keyboard control + decorative semantics ----------
+     The crystal is a decorative enhancement that must never block reading of
+     the portfolio. Keyboard users can reach the stage via the "Skip crystal"
+     button (or by tabbing through the hero) and rotate the cluster with the
+     arrow keys; Escape releases focus back to the skip control. Pointer drag
+     stays mouse-only so touch scrolling is unaffected. */
+  stage.setAttribute('role', 'group');
+  stage.setAttribute('aria-label', 'Decorative 3D crystal illustration (optional). Press Enter or use arrow keys to rotate; press Escape to skip.');
+  stage.style.touchAction = 'pan-y';
+
+  function stopCrystal() {
+    cancelAnimationFrame(rafId);
+    crystalStopped = true;
+    stage.classList.add('static-crystal');
+  }
+
+  stage.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { stopCrystal(); return; }
+    if (reduceMotion) return;            // static render: nothing to rotate
+    if (e.key === 'ArrowLeft')  { state.vx -= 0.012; e.preventDefault(); }
+    if (e.key === 'ArrowRight') { state.vx += 0.012; e.preventDefault(); }
+    if (e.key === 'Enter' || e.key === ' ') { state.energy = Math.min(1, state.energy + 0.5); e.preventDefault(); }
+  });
+
+  // Single tab stop for the whole decorative widget (keyboard-operable, skippable)
+  stage.setAttribute('tabindex', '0');
+  const photoCard = stage.querySelector('.photo-card');
+  if (photoCard) photoCard.tabIndex = -1;
+
   /* ---------- Render loop ---------- */
-  let time = 0, rafId = null, visible = true;
+  let time = 0, rafId = null, visible = true, crystalStopped = false;
 
   function tick() {
-    if (!visible) return;
+    if (!visible || !inViewport || crystalStopped) return;
+    cancelAnimationFrame(rafId);
     time += 0.016;
 
     // idle auto-rotation + drag inertia
@@ -262,9 +293,19 @@
 
   document.addEventListener('visibilitychange', () => {
     visible = !document.hidden;
-    if (visible && !reduceMotion) tick();
+    if (visible && inViewport && !reduceMotion && !crystalStopped) tick();
     else cancelAnimationFrame(rafId);
   });
+
+  // Pause rendering entirely while the hero is offscreen (saves battery/FPS)
+  let inViewport = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      inViewport = entry.isIntersecting;
+      if (inViewport && !document.hidden && !reduceMotion && !crystalStopped) tick();
+      else cancelAnimationFrame(rafId);
+    }, { threshold: 0.02 }).observe(stage);
+  }
 
   // Occasional ambient "micro-earthquake" jolts that ripple the seismograph
   if (!reduceMotion) {
