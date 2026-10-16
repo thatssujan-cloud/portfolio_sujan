@@ -879,8 +879,15 @@ body.has-header { padding-top: var(--header-h); }
   height: 480px; border-radius: var(--radius-md); overflow: hidden;
   border: 1px solid var(--line-soft); filter: saturate(.75) contrast(1.05);
 }
+/* Static / fallback states inside the map container (no JS, or Leaflet CDN blocked) */
+.map-static-note { padding: 26px; font-size: .9rem; color: var(--text-muted); }
+.map-static-note p { margin-bottom: 14px; }
+.map-unavailable {
+  display: grid; place-items: center; text-align: center; padding: 30px;
+  font-size: .9rem; line-height: 1.6; color: var(--text-muted);
+}
 .leaflet-container { background: var(--map-bg); }
-.custom-map-pin i { font-size: 30px; text-shadow: 0 4px 10px rgba(0,0,0,.6); }
+.custom-map-pin i, .custom-map-pin span { font-size: 30px; line-height: 1; text-shadow: 0 4px 10px rgba(0,0,0,.6); }
 .map-popup { font-family: var(--font-body); line-height: 1.5; }
 .map-popup-role { display: block; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--terracotta); }
 .map-popup-title { display: block; font-size: 1rem; margin: 2px 0; }
