@@ -758,11 +758,10 @@ body.has-header { padding-top: var(--header-h); }
 .core-sample.is-open .core-open-hint::after { transform: rotate(45deg); }
 @media (max-width: 640px) { .core-open-hint { display: none; } }
 
-.core-detail {
-  grid-column: 1 / -1;
-  display: grid; grid-template-rows: 0fr;
-  transition: grid-template-rows .6s var(--ease);
-}
+.core-detail { grid-column: 1 / -1; display: grid; }
+/* Accordion collapse only when JS is running (html.js) — without JS the full
+   case-study text stays visible to every reader. */
+.js .core-detail { grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
 .core-sample.is-open .core-detail { grid-template-rows: 1fr; }
 .core-detail-inner { overflow: hidden; }
 .core-detail-pad {
@@ -781,7 +780,8 @@ body.has-header { padding-top: var(--header-h); }
   background: conic-gradient(from 0deg, #b6552e33, #41697a33, #e0a95f33, #b6552e33);
 }
 .tag-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 14px 0 18px; }
-.tag-list span {
+/* list semantics fixed: tags are proper <li> elements (spans inside <ul> were invalid) */
+.tag-list li {
   font-family: var(--font-mono); font-size: .66rem; padding: 5px 12px;
   border-radius: 999px; border: 1px solid var(--line); color: var(--ochre);
 }
@@ -848,6 +848,8 @@ body.has-header { padding-top: var(--header-h); }
   display: grid; place-items: center; padding: 24px;
   opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s;
 }
+/* While open, the overlay covers the whole viewport and traps interaction */
+.lightbox.open { touch-action: none; }
 .lightbox.open { opacity: 1; visibility: visible; }
 .lightbox figure { max-width: min(1000px, 92vw); }
 .lightbox img {
@@ -1085,4 +1087,117 @@ body.has-header { padding-top: var(--header-h); }
   [data-theme="light"] .field-map, [data-theme="light"] .contact, [data-theme="light"] .site-footer {
     background: var(--bg);
   }
+}
+
+
+/* ==========================================================================
+   STRATA v6 — Recruiter-first static layout additions
+   ========================================================================== */
+
+/* Category-grouped technical skills */
+.skills-heading,
+.subsection-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem); color: var(--text);
+  margin: clamp(36px, 6vh, 60px) 0 18px;
+}
+.skill-groups { list-style: none; display: grid; gap: 22px; margin-top: 8px; }
+.skill-group h4 {
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--pyrite); margin-bottom: 10px;
+}
+.skill-group .skill-list { margin-top: 0; }
+
+/* Experience cards: titles, employers, projects, locations, dates */
+.exp-timeline { display: grid; gap: 22px; margin-top: 44px; }
+.exp-project { font-size: .9rem; color: var(--text-muted); margin: -6px 0 10px; }
+.exp-dates {
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em;
+  color: var(--gold); margin-bottom: 14px; text-transform: uppercase;
+}
+
+/* Education units */
+.unit-body h3 { font-family: var(--font-display); font-size: 1.28rem; margin-bottom: 6px; }
+.unit-result { font-size: .88rem; color: var(--text); margin-bottom: 10px; }
+
+/* Case-study records (projects & research) */
+.case-meta {
+  display: grid; grid-template-columns: auto 1fr; gap: 6px 18px;
+  margin: 4px 0 18px; font-size: .85rem;
+}
+.case-meta dt {
+  font-family: var(--font-mono); font-size: .66rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--pyrite); padding-top: 3px;
+}
+.case-meta dd { color: var(--text); }
+.case-field { color: var(--text-muted); font-size: .92rem; margin-bottom: 12px; }
+.case-field strong { color: var(--text); }
+.core-img figcaption { margin-top: 10px; font-size: .78rem; color: var(--text-muted); font-style: italic; }
+.output-note { margin: 6px 0 14px; }
+
+/* Publications */
+.publication-list { margin: 8px 0 0 clamp(18px, 3vw, 28px); display: grid; gap: 12px; color: var(--text-muted); font-size: .92rem; }
+.publication-list li::marker { color: var(--gold); font-family: var(--font-mono); }
+.publication-list a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Inline CV button + photo captions */
+.cv-inline { margin-top: 22px; }
+.photo-caption {
+  display: block; padding: 12px 16px; font-size: .78rem; font-style: italic;
+  color: var(--text-muted); background: var(--surface);
+}
+
+/* Field-site text list (map alternative for screen readers & no-JS) */
+.site-list { list-style: none; display: grid; gap: 12px; margin: 18px 0 30px; }
+.site-list li {
+  padding: 14px 18px; border-left: 3px solid var(--copper);
+  background: var(--surface); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-muted); font-size: .92rem;
+}
+.site-list strong { color: var(--text); }
+
+/* On-demand map disclosure */
+.map-details { margin-top: 8px; }
+.map-details > summary {
+  cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: .78rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--line); border-radius: 999px; padding: 10px 22px;
+  margin-bottom: 22px; transition: background .3s, color .3s;
+  list-style: none;
+}
+.map-details > summary::-webkit-details-marker { display: none; }
+.map-details > summary::before { content: "▸"; transition: transform .25s var(--ease); }
+.map-details[open] > summary::before { transform: rotate(90deg); }
+.map-details > summary:hover, .map-details > summary:focus-visible { background: var(--surface-2); }
+
+/* Mentors lead line */
+.mentors-lead { color: var(--ochre); font-style: italic; margin-top: 26px; max-width: 60ch; }
+
+/* Volunteer descriptions (list items now use <span class="volunteer-desc">) */
+.volunteer-desc { display: block; color: var(--text-muted); font-size: .85rem; }
+
+/* Lightbox overlay must block background interaction while open */
+.lightbox[hidden] { display: none !important; }
+
+/* Stronger, always-visible focus indicators (WCAG 2.1 AA) */
+a:focus-visible, button:focus-visible, summary:focus-visible,
+[role="application"]:focus-visible, input:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+[data-theme="light"] a:focus-visible,
+[data-theme="light"] button:focus-visible,
+[data-theme="light"] summary:focus-visible { outline-color: #7a5210; }
+
+/* Crystal stage: purely decorative canvas region — never intercepts input
+   when WebGL is absent, and its hint label stays out of the a11y tree. */
+#crystal-stage.no-webgl { pointer-events: none; }
+.crystal-hint { pointer-events: none; }
+
+/* Reduced motion: freeze canvas-driven ambience too */
+@media (prefers-reduced-motion: reduce) {
+  .corner-om, .scroll-cue::after { animation: none !important; }
+  #seismo-canvas { opacity: .25; }
 }

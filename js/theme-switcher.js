@@ -11,6 +11,9 @@
 
 (function initThemeSwitcher() {
   const root = document.documentElement;
+  /* Flag that JS is running so reveal/accordion CSS can animate safely.
+     Without this flag every element remains fully visible (no-JS friendly). */
+  root.classList.add('js');
   const KEY = 'strata-theme';
 
   function preferred() {

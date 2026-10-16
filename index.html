@@ -3,46 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Immersive geological portfolio of Sujan Paudyal — Assistant Geologist & Civil Engineer from Nepal. Stratigraphic career column, drill-core research samples, seismic micro-zonation and Himalayan field engineering.">
+  <title>Sujan Paudyal | Civil Sub-Engineer &amp; Geologist — Nepal</title>
+  <meta name="description" content="Portfolio of Sujan Paudyal — Civil Sub-Engineer and geology graduate (B.Sc., Tribhuvan University) with 3+ years of Himalayan field experience: transmission-line foundation geology, geological mapping, slope stability and geohazard assessment in Taplejung, Nepal. Published research on flood dynamics; ongoing seismic micro-zonation of Jajarkot.">
   <meta name="author" content="Sujan Paudyal">
   <meta name="theme-color" content="#0c0b0e">
-  <meta property="og:title" content="Sujan Paudyal | Geologist & Civil Engineer">
-  <meta property="og:description" content="I study the ground beneath what we build — mapping, core sampling and reading strata across the Himalaya.">
-  <title>Sujan Paudyal | Geologist &amp; Civil Engineer — Strata Portfolio</title>
+
+  <!-- Canonical + social cards -->
+  <link rel="canonical" href="https://thatssujan-cloud.github.io/portfolio_sujan/">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Sujan Paudyal — Portfolio">
+  <meta property="og:title" content="Sujan Paudyal | Civil Sub-Engineer &amp; Geologist — Nepal">
+  <meta property="og:description" content="Geology-educated Civil Sub-Engineer with 3+ years of Himalayan field engineering: transmission-line foundation geology, slope stability and geohazard assessment.">
+  <meta property="og:url" content="https://thatssujan-cloud.github.io/portfolio_sujan/">
+  <meta property="og:image" content="https://thatssujan-cloud.github.io/portfolio_sujan/image/me01.jpg">
+  <meta property="og:image:alt" content="Portrait of Sujan Paudyal, Civil Sub-Engineer and geologist from Nepal">
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sujan Paudyal | Civil Sub-Engineer &amp; Geologist — Nepal">
+  <meta name="twitter:description" content="Geology-educated Civil Sub-Engineer with 3+ years of Himalayan field engineering across Taplejung and the Nepal–Tibet border corridor.">
+  <meta name="twitter:image" content="https://thatssujan-cloud.github.io/portfolio_sujan/image/me01.jpg">
+
+  <!-- Favicon (inline SVG — always resolves, never 404s) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317151f'/%3E%3Cpath d='M4 22h24' stroke='%23cf9768' stroke-width='3'/%3E%3Cpath d='M4 16h24' stroke='%23e6b877' stroke-width='3'/%3E%3Cpath d='M4 10h24' stroke='%23c06a4a' stroke-width='3'/%3E%3C/svg%3E">
 
   <!-- Fonts: Fraunces (display) · Inter (body) · IBM Plex Mono (field data) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,600&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Leaflet (async, non-critical) -->
-  <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
-
   <!-- Site stylesheet — STRATA design system -->
-  <link rel="stylesheet" href="css/strata.css?v=5">
+  <link rel="stylesheet" href="css/strata.css?v=6">
+
+  <!-- Structured data: Person (validated schema.org vocabulary) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sujan Paudyal",
+    "jobTitle": "Civil Sub-Engineer & Geologist",
+    "url": "https://thatssujan-cloud.github.io/portfolio_sujan/",
+    "image": "https://thatssujan-cloud.github.io/portfolio_sujan/image/me01.jpg",
+    "email": "mailto:again.sujan@gmail.com",
+    "telephone": "+977-986-7996682",
+    "sameAs": ["https://www.linkedin.com/in/sujanpaudyal"],
+    "alumniOf": [{
+      "@type": "CollegeOrUniversity",
+      "name": "Tri-Chandra Multiple Campus, Tribhuvan University"
+    }],
+    "worksFor": { "@type": "Organization", "name": "Rastriya Prasaran Grid Company Limited (RPGCL)" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Kathmandu", "addressRegion": "Bagmati Province", "addressCountry": "NP" },
+    "knowsAbout": [
+      "Geological Mapping", "Engineering Geology", "Foundation Geology", "Slope Stability",
+      "Geohazard Assessment", "Surveying", "Seismic Microzonation", "Flood Dynamics",
+      "Transmission Line Construction", "Stratigraphy", "Petrology", "Structural Geology"
+    ],
+    "description": "Civil Sub-Engineer and B.Sc. Geology graduate (Tribhuvan University) with 3+ years of Himalayan field engineering on RPGCL transmission-line projects in Taplejung, Nepal; published research on flood dynamics and ongoing seismic micro-zonation study of Jajarkot."
+  }
+  </script>
+
 </head>
 <body class="has-header">
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- Reactive seismograph trace running behind everything (Canvas) -->
+<!-- Reactive seismograph trace running behind everything (Canvas, decorative) -->
 <canvas id="seismo-canvas" aria-hidden="true"></canvas>
-<!-- Sediment grain overlay -->
+<!-- Sediment grain overlay (decorative) -->
 <div class="grain" aria-hidden="true"></div>
-<!-- Fixed corner OM animation (revolving ॐ glyph, pure SVG/CSS) -->
-<div class="corner-om" aria-hidden="true">
-  <svg viewBox="0 0 100 100" width="100%" height="100%" focusable="false">
-    <circle class="om-ring" cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8" stroke-linecap="round"/>
-    <text class="om-glyph" x="50" y="54" text-anchor="middle" dominant-baseline="central" font-size="52" fill="currentColor">&#x0950;</text>
-  </svg>
-</div>
 
 <!-- ======================== HEADER ======================== -->
 <header class="site-header" role="banner">
   <div class="header-inner">
-    <a class="logo" href="#home" aria-label="Sujan Paudyal — back to surface">
-      Sujan<span>.</span><em>Geologist / Field Notes</em>
+    <a class="logo" href="#home" aria-label="Sujan Paudyal — back to top">
+      Sujan<span>.</span><em>Civil Sub-Engineer / Geologist</em>
     </a>
     <div class="header-tools">
       <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false"
@@ -61,13 +94,16 @@
     </button>
     <nav class="primary-nav" id="primary-nav" aria-label="Primary">
       <ul>
-        <li><a href="#home">Surface</a></li>
-        <li><a href="#about">Regolith</a></li>
-        <li><a href="#experience">Strata</a></li>
-        <li><a href="#research">Core Samples</a></li>
-        <li><a href="#testimonials">Trace Fossils</a></li>
-        <li><a href="#gallery">Outcrops</a></li>
-        <li><a href="#contact">Mantle</a></li>
+        <li><a href="#qualifications">Qualifications</a></li>
+        <li><a href="#qualifications">Qualifications</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#gallery">Fieldwork</a></li>
+        <li><a href="#field-sites">Field Sites</a></li>
+        <li><a href="#mentors">Mentors</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -75,164 +111,501 @@
 
 <main id="main-content">
 
-  <!-- ===== SURFACE / TOPSOIL — HERO ===== -->
+  <!-- ===== HERO ===== -->
   <section id="home" class="hero stratum" aria-labelledby="hero-heading">
     <canvas id="hero-strata-canvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div class="hero-content">
-        <p class="eyebrow" id="hero-eyebrow">Understanding the Earth Beneath Us</p>
-        <h1 id="hero-heading"><span id="typing-text">I Study the Ground Beneath What We Build.</span><span class="typing-cursor" aria-hidden="true"></span></h1>
-        <p class="lead" id="hero-lead"></p>
-        <div class="hero-actions" id="hero-actions"></div>
-        <p class="credential" id="credential"></p>
+        <p class="eyebrow">B.Sc. Geology · Civil Sub-Engineer · Nepal</p>
+        <h1 id="hero-heading">Sujan Paudyal — Civil Sub-Engineer &amp; Geologist</h1>
+        <p class="lead">I hold a B.Sc. in Geology from Tribhuvan University and work as a Civil Sub-Engineer on RPGCL’s Mewa–Changhe 132&nbsp;kV transmission line in Taplejung. For 3+ years I have delivered foundation geology, surveying and slope-stability work across Himalayan terrain — mapping rock and soil, inspecting test pits and tower footings, and assessing landslide and flood hazards before and during construction.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="CV_SUJAN_PAUDYAL.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost" href="#projects">View Projects</a>
+          <a class="btn btn-ghost" href="#contact">Contact Me</a>
+        </div>
+        <p class="credential">Based in Kathmandu / Koshi Province, Nepal · Available for geotechnical, field-geology and graduate-research roles</p>
       </div>
 
       <div class="hero-visual">
-        <div id="crystal-stage" aria-label="Interactive 3D mineral crystal — hover and drag to spin the cluster">
-          <span class="crystal-hint" aria-hidden="true">Drag the crystal · Hover to charge</span>
+        <div id="crystal-stage">
           <figure class="photo-card" id="hero-photo">
-            <img src="image/fied3.jpeg" alt="Sujan Paudyal standing in front of the Pathibhara temple in Taplejung, Nepal" width="600" height="750" fetchpriority="high" decoding="async">
+            <img src="image/fied3.jpeg" alt="Sujan Paudyal standing in front of the Pathibhara temple in Taplejung, Nepal" width="600" height="750" loading="eager" fetchpriority="high" decoding="async">
           </figure>
         </div>
       </div>
     </div>
-    <div class="scroll-cue" aria-hidden="true">Begin drilling</div>
+    <div class="scroll-cue" aria-hidden="true">Scroll</div>
   </section>
-  </div>
 
-  <!-- ===== REGOLITH / SOIL — ABOUT ===== -->
-  <section id="about" class="about stratum" aria-labelledby="about-heading">
+  <!-- ===== QUALIFICATIONS & SKILLS ===== -->
+  <section id="qualifications" class="about stratum" aria-labelledby="qualifications-heading">
     <div class="wrap">
-      <p class="layer-tag">Layer 01 · Topsoil &amp; Regolith</p>
-      <h2 id="about-heading" class="section-title fault-split">About Me</h2>
-      <p class="about-tagline" id="about-tagline"></p>
+      <p class="layer-tag">Overview · Field Notes</p>
+      <h2 id="qualifications-heading" class="section-title fault-split">Qualifications &amp; Skills</h2>
+      <p class="about-tagline">Quick summary for recruiters — full details follow in Experience, Projects and Education.</p>
 
       <div class="about-grid">
         <div class="about-text">
-          <div id="about-paras"></div>
-          <ul class="skill-list" id="skill-list" aria-label="Core technical skills"></ul>
+          <p class="about-lede">I am Sujan Paudyal, a geology graduate (B.Sc., Tri-Chandra Multiple Campus, Tribhuvan University) working as a Civil Sub-Engineer on a live 132&nbsp;kV transmission-line project in Taplejung for Rastriya Prasaran Grid Company Limited (RPGCL). My work combines geological mapping, rock and soil identification and slope-stability screening with foundation supervision, surveying and construction quality control in complex Himalayan terrain.</p>
+          <p class="about-lede">Beyond site work, I have published research on transboundary flood dynamics at Rasuwagadhi–Kerung and am currently pursuing a seismic micro-zonation study of Jajarkot. I am open to geotechnical consulting, field-geology positions and graduate research opportunities.</p>
+
+          <h3 class="skills-heading">Technical Skills</h3>
+          <ul class="skill-groups">
+            <li class="skill-group">
+              <h4>Geological Fieldwork</h4>
+              <ul class="skill-list">
+                <li>Geological Mapping</li>
+                <li>Rock &amp; Soil Identification</li>
+                <li>Stratigraphic Logging</li>
+                <li>Terrain Analysis</li>
+                <li>Test-Pit Excavation &amp; Inspection</li>
+              </ul>
+            </li>
+            <li class="skill-group">
+              <h4>Civil Engineering</h4>
+              <ul class="skill-list">
+                <li>Foundation Construction Supervision</li>
+                <li>Concrete Quality Control</li>
+                <li>Site Levelling &amp; Setting Out</li>
+                <li>Construction Specifications</li>
+              </ul>
+            </li>
+            <li class="skill-group">
+              <h4>Surveying</h4>
+              <ul class="skill-list">
+                <li>Dumpy &amp; Auto Level</li>
+                <li>Total Station (basic)</li>
+                <li>Topographic Survey Support</li>
+                <li>Boundary Marking</li>
+              </ul>
+            </li>
+            <li class="skill-group">
+              <h4>GIS &amp; Mapping</h4>
+              <ul class="skill-list">
+                <li>QGIS</li>
+                <li>AutoCAD</li>
+                <li>Field Sketch Mapping</li>
+              </ul>
+            </li>
+            <li class="skill-group">
+              <h4>Geotechnical Assessment</h4>
+              <ul class="skill-list">
+                <li>Slope-Stability Screening</li>
+                <li>Landslide &amp; Erosion Hazard Review</li>
+                <li>Flood-Hazard Analysis</li>
+                <li>Site-Response Fundamentals</li>
+              </ul>
+            </li>
+            <li class="skill-group">
+              <h4>Technical Documentation</h4>
+              <ul class="skill-list">
+                <li>Daily Technical Logs</li>
+                <li>Field Reports</li>
+                <li>Quantity Tracking</li>
+                <li>MS Excel &amp; Word</li>
+              </ul>
+            </li>
+          </ul>
         </div>
         <div class="about-side">
-          <figure class="about-photo reveal" id="about-photo">
+          <figure class="about-photo reveal">
             <img src="image/filed3.jpeg" alt="Sujan Paudyal examining foliated rock strata during a geological field survey in the Himalayas" width="600" height="750" loading="lazy" decoding="async">
+            <figcaption class="photo-caption">Mapping foliated Mid-Himalayan strata on a tower alignment, Taplejung (field survey).</figcaption>
           </figure>
-          <div class="about-stats" id="about-stats" role="list" aria-label="Key qualifications"></div>
+          <div class="about-stats" role="list" aria-label="Key qualifications">
+            <div class="stat-row" role="listitem">
+              <span class="stat-layer" data-layer="topsoil" aria-hidden="true"></span>
+              <span><span class="stat-label">Education</span><span class="stat-value">B.Sc. Geology — Tribhuvan University (completed 2025)</span></span>
+              <span class="badge">Degree</span>
+            </div>
+            <div class="stat-row" role="listitem">
+              <span class="stat-layer" data-layer="sedimentary" aria-hidden="true"></span>
+              <span><span class="stat-label">Experience</span><span class="stat-value">Civil Sub-Engineer — RPGCL transmission line, Taplejung (3+ years)</span></span>
+              <span class="badge">Government project</span>
+            </div>
+            <div class="stat-row" role="listitem">
+              <span class="stat-layer" data-layer="metamorphic" aria-hidden="true"></span>
+              <span><span class="stat-label">Publication</span><span class="stat-value">Flood dynamics of Rasuwagadhi–Kerung — GeoWorld Students’ Journal Vol. 13</span></span>
+              <span class="badge">Published</span>
+            </div>
+            <div class="stat-row" role="listitem">
+              <span class="stat-layer" data-layer="igneous" aria-hidden="true"></span>
+              <span><span class="stat-label">Current focus</span><span class="stat-value">Seismic micro-zonation of Jajarkot, Nepal</span></span>
+              <span class="badge">In progress</span>
+            </div>
+          </div>
+          <p class="cv-inline"><a class="btn btn-primary" href="CV_SUJAN_PAUDYAL.pdf" download>Download CV <span aria-hidden="true">↓</span></a></p>
         </div>
       </div>
-
-      <!-- Stratigraphic education column -->
-      <div class="column-head">
-        <p class="layer-tag">Column A · Educational Formations</p>
-        <h3 class="section-title fault-split" style="font-size:clamp(1.6rem,3.4vw,2.4rem)">Stratigraphic Timeline of Study</h3>
-        <p class="section-sub">Each degree is mapped as a lithostratigraphic unit — oldest formations at depth, youngest at the surface.</p>
-      </div>
-      <div class="strat-column" id="edu-column" aria-label="Education history as a geological column"></div>
     </div>
   </section>
-  </div>
 
-  <!-- ===== SEDIMENTARY / METAMORPHIC — EXPERIENCE ===== -->
+  <!-- ===== WORK EXPERIENCE ===== -->
   <section id="experience" class="experience stratum" aria-labelledby="experience-heading">
     <div class="wrap">
-      <p class="layer-tag">Layer 02 · Sedimentary &amp; Metamorphic Sequences</p>
+      <p class="layer-tag">Career Record · Field Notes</p>
       <h2 id="experience-heading" class="section-title fault-split">Work Experience</h2>
-      <p class="section-sub">Deposited year by year in the field — compacted under pressure into professional bedrock.</p>
-      <div id="exp-units" style="margin-top:44px;display:grid;gap:20px"></div>
+      <p class="section-sub">Professional employment and training — site supervision, surveying and geotechnical fieldwork across Taplejung and neighbouring districts.</p>
+
+      <div class="exp-timeline">
+        <article class="exp-card reveal">
+          <h3>Civil Sub-Engineer</h3>
+          <p class="exp-org">Rastriya Prasaran Grid Company Limited (RPGCL) — government sector</p>
+          <p class="exp-project">Mewa–Changhe 132&nbsp;kV Transmission Line Project · Taplejung, Koshi Province</p>
+          <p class="exp-dates"><time datetime="2022">2022</time> – Present · 3+ years</p>
+          <ul class="exp-list">
+            <li>Supervise construction of transmission-tower footings across mountainous alignments, verifying compliance with structural specifications and safety standards.</li>
+            <li>Conduct field soil assessments, test-pit inspections and levelling surveys to position foundations safely on complex slopes.</li>
+            <li>Evaluate rock and soil stability along tower corridors, screening for landslide and erosion hazards during excavation and recommending mitigation.</li>
+            <li>Track project quantities, maintain daily technical logs and coordinate field communication between contractors and the project office.</li>
+          </ul>
+        </article>
+
+        <article class="exp-card reveal">
+          <h3>Hydroelectric Site Investigation — On-the-Job Training</h3>
+          <p class="exp-org">Madhyaphawa Khola Jalabidhyut Co-operative Ltd.</p>
+          <p class="exp-project">Run-of-river hydropower scheme · Madhyaphawa Khola, Taplejung</p>
+          <p class="exp-dates">6 months</p>
+          <ul class="exp-list">
+            <li>Conducted geological field mapping and terrain surveys along waterway alignments.</li>
+            <li>Assessed soil and rock stability at planned intake and headworks sites.</li>
+            <li>Supported civil engineering teams with preliminary field-data collection and logging.</li>
+          </ul>
+        </article>
+
+        <article class="exp-card reveal">
+          <h3>Municipal Engineering Intern</h3>
+          <p class="exp-org">Suryabinayak &amp; Phungling Municipalities</p>
+          <p class="exp-project">Municipal civil works · Bhaktapur and Phungling, Taplejung</p>
+          <p class="exp-dates">3 months each</p>
+          <ul class="exp-list">
+            <li>Assisted with topographic surveys and levelling for municipal road projects.</li>
+            <li>Inspected slope conditions and drainage pathways for local retaining structures.</li>
+            <li>Gained practical exposure to municipal civil works and local site evaluation.</li>
+          </ul>
+        </article>
+
+        <h3 class="subsection-title">Community &amp; Volunteer Work</h3>
+        <ul class="volunteer-list reveal">
+          <li><strong>Tribhuvan University Students Exploration Chapter (TUSEG)</strong><span class="volunteer-desc">Coordinated geological field mapping, technical workshops and student interaction programmes.</span></li>
+          <li><strong>Community Disaster Preparedness &amp; Hazard Awareness</strong><span class="volunteer-desc">Delivered local awareness sessions on landslide safety, slope monitoring and flood precautions.</span></li>
+          <li><strong>Nepal Geological Student Society (NGSS) — Student Volunteer</strong><span class="volunteer-desc">Supported event organisation and technical-session coordination during a geological exhibition.</span></li>
+          <li><strong>Youth Red Cross — Tri-Chandra Chapter</strong><span class="volunteer-desc">Organised campus blood-donation drives and supported first-aid and community health outreach.</span></li>
+          <li><strong>Amnesty International — Tri-Chandra Youth Network</strong><span class="volunteer-desc">Participated in youth leadership campaigns and community advocacy programmes.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- ===== IGNEOUS INTRUSION — MENTORS ===== -->
-  <section id="mentors" class="mentors stratum" aria-labelledby="mentors-heading">
+  <!-- ===== SELECTED PROJECTS ===== -->
+  <section id="projects" class="research stratum" aria-labelledby="projects-heading">
     <div class="wrap">
-      <p class="layer-tag">Intrusion · Igneous Dykes of Guidance</p>
-      <h2 id="mentors-heading" class="section-title fault-split">Mentors &amp; Guidance</h2>
-      <p class="section-sub" id="mentors-lead"></p>
-      <div class="mentor-strip" id="mentor-strip"></div>
+      <p class="layer-tag">Case Studies · Site Records</p>
+      <h2 id="projects-heading" class="section-title fault-split">Selected Projects</h2>
+      <p class="section-sub">Technical case studies from professional site work — expand each record for location, methodology, my contribution and deliverables.</p>
+      <div class="core-rack" id="project-rack">
+        <article class="core-sample reveal" id="project-transmission">
+          <button type="button" class="core-trigger" aria-expanded="false" aria-controls="detail-transmission" tabindex="-1" hidden>
+            <span class="sr-only">Expand project record: Mewa–Changhe 132 kV transmission-line geotech</span>
+          </button>
+          <button type="button" class="core-summary" aria-expanded="false" aria-controls="detail-transmission">
+            <span class="core-kicker"><span>PROJECT 01 · Professional</span><span class="litho">Foundation geology · RPGCL</span></span>
+            <h3>Mewa–Changhe 132&nbsp;kV Transmission Line — Foundation Geology</h3>
+            <p class="tease">Taplejung, Koshi Province · Ongoing · Rock &amp; soil identification, test-pit logging, slope screening</p>
+            <span class="core-open-hint">Extract</span>
+          </button>
+          <div class="core-detail" id="detail-transmission">
+            <div class="core-detail-inner">
+              <div class="core-detail-pad">
+                <div>
+                  <dl class="case-meta">
+                    <dt>Type</dt><dd>Professional work (not academic research)</dd>
+                    <dt>Client / Employer</dt><dd>Rastriya Prasaran Grid Company Limited (RPGCL)</dd>
+                    <dt>Location</dt><dd>Mewa–Changhe alignment, Taplejung District</dd>
+                    <dt>Status</dt><dd>Ongoing since 2022</dd>
+                  </dl>
+                  <p class="case-field"><strong>Question addressed:</strong> How do we place and verify tower foundations safely on steep, weathered Mid-Himalayan slopes?</p>
+                  <p class="case-field"><strong>Methodology:</strong> Walked tower alignments; identified exposed rock and soil units; logged test pits at each footing; took dumpy-level height checks; screened cut-slopes for landslide and erosion risk before and during excavation.</p>
+                  <p class="case-field"><strong>My contribution:</strong> As Civil Sub-Engineer I supervised footing construction end-to-end — inspection sign-offs, quantity records, daily logs and hazard flags to the design team.</p>
+                  <p class="case-field"><strong>Deliverables:</strong> Verified foundations erected across the assigned stretch; continuous daily technical and quantity logs; documented hazard mitigations adopted on site.</p>
+                  <ul class="tag-list" aria-label="Topics"><li>Slope Stability</li><li>Foundation Engineering</li><li>Field Mapping</li><li>Quality Control</li></ul>
+                  <figure class="core-img">
+                    <img src="image/field4.jpeg" alt="Field crew reviewing a foundation excavation pit on a grassy hillside along the transmission-line alignment in Taplejung" width="800" height="600" loading="lazy" decoding="async">
+                    <figcaption>Test-pit review with the site crew on a tower footing, Taplejung (as supervising Sub-Engineer).</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="core-sample reveal" id="project-hydro">
+          <button type="button" class="core-trigger" aria-expanded="false" aria-controls="detail-hydro" tabindex="-1" hidden>
+            <span class="sr-only">Expand project record: Madhyaphawa Khola hydroelectric site investigation</span>
+          </button>
+          <button type="button" class="core-summary" aria-expanded="false" aria-controls="detail-hydro">
+            <span class="core-kicker"><span>PROJECT 02 · Training</span><span class="litho">Engineering geology · Hydropower</span></span>
+            <h3>Madhyaphawa Khola Hydroelectric Site Investigation</h3>
+            <p class="tease">Taplejung · Completed 6-month OJT · Waterway mapping, intake &amp; headworks stability</p>
+            <span class="core-open-hint">Extract</span>
+          </button>
+          <div class="core-detail" id="detail-hydro">
+            <div class="core-detail-inner">
+              <div class="core-detail-pad">
+                <div>
+                  <dl class="case-meta">
+                    <dt>Type</dt><dd>On-the-job training (professional)</dd>
+                    <dt>Organisation</dt><dd>Madhyaphawa Khola Jalabidhyut Co-operative Ltd.</dd>
+                    <dt>Location</dt><dd>Madhyaphawa Khola corridor, Taplejung</dd>
+                    <dt>Status</dt><dd>Completed</dd>
+                  </dl>
+                  <p class="case-field"><strong>Question addressed:</strong> Is the ground along the waterway and at the intake/headworks suitable for a run-of-river scheme?</p>
+                  <p class="case-field"><strong>Methodology:</strong> Geological mapping and terrain survey along the alignment; field assessment of river-bed gravels and bedrock at proposed structures.</p>
+                  <p class="case-field"><strong>My contribution:</strong> Collected and logged field data supporting the civil team's siting decisions.</p>
+                  <p class="case-field"><strong>Deliverable:</strong> Field logs and mapped sections handed over to the investigation team.</p>
+                  <ul class="tag-list" aria-label="Topics"><li>Engineering Geology</li><li>Hydropower</li><li>Geological Mapping</li></ul>
+                  <figure class="core-img">
+                    <img src="image/field9.jpeg" alt="Geological investigation along a boulder-strewn Himalayan river corridor during the hydroelectric site survey" width="800" height="600" loading="lazy" decoding="async">
+                    <figcaption>River-corridor survey along Madhyaphawa Khola during the OJT assignment (mapping assistant).</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
-  </div>
 
-  <!-- ===== DEEP DRILLING — RESEARCH / CORE SAMPLES ===== -->
+  <!-- ===== RESEARCH & PUBLICATIONS ===== -->
   <section id="research" class="research stratum" aria-labelledby="research-heading">
-    <div class="wrap" id="projects">
-      <p class="layer-tag">Borehole Zone · Recovered Core</p>
-      <h2 id="research-heading" class="section-title fault-split">Research &amp; Projects as Drill-Core Samples</h2>
-      <p class="section-sub">Every project is logged like a borehole: pick a core to extract it from the rack and open the thin-section record.</p>
-      <div class="core-rack" id="core-rack"></div>
-    </div>
-  </section>
-
-
-  <!-- ===== TRACE FOSSILS — TESTIMONIALS ===== -->
-  <section id="testimonials" class="testimonials stratum" aria-labelledby="testimonials-heading">
     <div class="wrap">
-      <p class="layer-tag">Fossil Record · Ichnofossils of Collaboration</p>
-      <h2 id="testimonials-heading" class="section-title fault-split">What People Say</h2>
-      <p class="section-sub">Impressions left in the sediment by colleagues, mentors and collaborators in the field.</p>
-      <div class="testimonials-grid" id="testimonials-grid"></div>
+      <p class="layer-tag">Academic Record · Research</p>
+      <h2 id="research-heading" class="section-title fault-split">Research &amp; Publications</h2>
+      <p class="section-sub">Academic research kept separate from professional site work — each record lists the research question, methods, my role, status and findings.</p>
+      <div class="core-rack" id="core-rack">
+        <article class="core-sample reveal" id="research-flood">
+          <button type="button" class="core-trigger" aria-expanded="false" aria-controls="detail-flood" tabindex="-1" hidden>
+            <span class="sr-only">Expand research record: Flood dynamics at Rasuwagadhi–Kerung</span>
+          </button>
+          <button type="button" class="core-summary" aria-expanded="false" aria-controls="detail-flood">
+            <span class="core-kicker"><span>RESEARCH 01 · Published</span><span class="litho">Geomorphology · Flood analysis</span></span>
+            <h3>Flood Dynamics at the Rasuwagadhi–Kerung Border</h3>
+            <p class="tease">Nylon/Rasuwagadhi, Rasuwa · Published in GeoWorld Students’ Journal Vol. 13</p>
+            <span class="core-open-hint">Extract</span>
+          </button>
+          <div class="core-detail" id="detail-flood">
+            <div class="core-detail-inner">
+              <div class="core-detail-pad">
+                <div>
+                  <dl class="case-meta">
+                    <dt>Type</dt><dd>Academic research (undergraduate)</dd>
+                    <dt>Location</dt><dd>Rasuwagadhi–Kerung transboundary corridor, Rasuwa District</dd>
+                    <dt>Status</dt><dd>Published — peer-reviewed student journal</dd>
+                  </dl>
+                  <p class="case-field"><strong>Research question:</strong> What drives mountain flood hazards along the transboundary Trishuli-headwater corridor, and how vulnerable are the settlements and the Kodari–Rasuwagadhi trade route?</p>
+                  <p class="case-field"><strong>Methodology:</strong> Field visit to the corridor; channel and geomorphological observation; review of local hazard records; disaster-risk analysis of terrain vulnerability.</p>
+                  <p class="case-field"><strong>My contribution:</strong> Co-authored the study — field data collection, hazard mapping input and manuscript preparation.</p>
+                  <p class="case-field"><strong>Findings / output:</strong> Identified channel-bottleneck and glacial-lake outburst contributions to flood peaks and recommended corridor-level risk-management measures. Full citation below.</p>
+                  <ul class="tag-list" aria-label="Topics"><li>Disaster Risk</li><li>Geomorphology</li><li>Flood Analysis</li></ul>
+                  <p class="output-note"><a class="btn btn-ghost" href="paper.pdf">Read paper (PDF)</a></p>
+                  <figure class="core-img">
+                    <img src="image/field10.jpeg" alt="River channel measurement and field research near the Rasuwagadhi–Kerung transboundary corridor" width="800" height="600" loading="lazy" decoding="async">
+                    <figcaption>Channel observation during the Rasuwagadhi field visit (student researcher).</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="core-sample reveal" id="research-microzonation">
+          <button type="button" class="core-trigger" aria-expanded="false" aria-controls="detail-microzonation" tabindex="-1" hidden>
+            <span class="sr-only">Expand research record: Seismic micro-zonation of Jajarkot</span>
+          </button>
+          <button type="button" class="core-summary" aria-expanded="false" aria-controls="detail-microzonation">
+            <span class="core-kicker"><span>RESEARCH 02 · In progress</span><span class="litho">Earthquake geology · Site response</span></span>
+            <h3>Seismic Micro-zonation of Jajarkot, Nepal</h3>
+            <p class="tease">Jajarkot · Ongoing · Post-2023 earthquake sequence site-response study</p>
+            <span class="core-open-hint">Extract</span>
+          </button>
+          <div class="core-detail" id="detail-microzonation">
+            <div class="core-detail-inner">
+              <div class="core-detail-pad">
+                <div>
+                  <dl class="case-meta">
+                    <dt>Type</dt><dd>Academic research (in progress)</dd>
+                    <dt>Location</dt><dd>Jajarkot District (2023 Mw 6.4 epicentral region)</dd>
+                    <dt>Status</dt><dd>In progress — no publication yet</dd>
+                  </dl>
+                  <p class="case-field"><strong>Research question:</strong> How does local geology amplify ground shaking in Jajarkot, and what site-specific zones need stricter building controls for safe reconstruction?</p>
+                  <p class="case-field"><strong>Methodology:</strong> Integrating geological, geotechnical and seismic-shaking data to characterise site response across the district.</p>
+                  <p class="case-field"><strong>My contribution:</strong> Lead student investigator — literature synthesis, data compilation and zonation framework.</p>
+                  <p class="case-field"><strong>Expected deliverable:</strong> A micro-zonation report and map for the study area (findings will be added once completed).</p>
+                  <ul class="tag-list" aria-label="Topics"><li>Earthquake Geology</li><li>Site Response</li><li>Micro-zonation</li></ul>
+                  <figure class="core-img">
+                    <img src="image/field-work.jpeg" alt="Geological fieldwork in Himalayan terrain relevant to the seismic micro-zonation study area" width="800" height="600" loading="lazy" decoding="async">
+                    <figcaption>Fieldwork practice in comparable Siwalik–Lesser-Himalayan terrain (student investigator).</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="subsection-title">Publications &amp; Verifiable Outputs</h3>
+      <ol class="publication-list">
+        <li>Paudyal, S. (co-author). “Flood Dynamics at the Rasuwagadhi–Kerung Border.” <em>GeoWorld Students’ Journal</em>, Vol.&nbsp;13, Tribhuvan University, Nepal (published; preprint hosted with this portfolio). <a href="paper.pdf">Read paper (PDF)</a> — DOI not assigned by the journal.</li>
+        <li>Seismic Micro-zonation of Jajarkot, Nepal — research in progress; no publication or DOI yet. Results will be cited here when released.</li>
+      </ol>
     </div>
   </section>
 
-  <!-- ===== OUTCROPS — GALLERY ===== -->
+  <!-- ===== EDUCATION ===== -->
+  <section id="education" class="about stratum" aria-labelledby="education-heading">
+    <div class="wrap">
+      <p class="layer-tag">Academic Formations · Most Recent First</p>
+      <h2 id="education-heading" class="section-title fault-split">Education</h2>
+      <p class="section-sub">Degrees in chronological order (most recent first), with institutions, completion years, results and key coursework.</p>
+      <div class="strat-column" id="edu-column">
+        <div class="strat-unit reveal-shift">
+          <div class="unit-era"><span>2021 – 2025</span><small>Bachelor’s Degree</small></div>
+          <div class="unit-spine"><span class="unit-node" aria-hidden="true"></span></div>
+          <div class="unit-body">
+            <h3>B.Sc. Geology — Completed 2025</h3>
+            <p class="unit-meta">Tri-Chandra Multiple Campus, Tribhuvan University <span class="loc">· Kathmandu</span></p>
+            <p class="unit-result">Result: Bachelor’s degree completed (transcript and result letters available on request).</p>
+            <p>Four-year curriculum: Structural Geology, Petrology, Mineralogy, Sedimentology &amp; Stratigraphy, Engineering Geology, Hydrogeology, Geology of Nepal. Practical training: geological field mapping, rock-mass identification, stratigraphic logging and technical field-report writing.</p>
+          </div>
+        </div>
+        <div class="strat-unit reveal-shift">
+          <div class="unit-era"><span>Completed 2021</span><small>Higher Secondary</small></div>
+          <div class="unit-spine"><span class="unit-node" aria-hidden="true"></span></div>
+          <div class="unit-body">
+            <h3>+2 Technical Science (Civil Engineering Stream) — Completed 2021</h3>
+            <p class="unit-meta">Shree Padma Secondary School <span class="loc">· Bhaktapur</span></p>
+            <p class="unit-result">Result: High School Leaving Certificate (HSLC) completed.</p>
+            <p>Coursework: Soil Mechanics, Foundation Engineering, Field Surveying and Highway Engineering alongside core sciences — an applied grounding in ground stability that led directly into the B.Sc. in Geology.</p>
+          </div>
+        </div>
+        <div class="strat-unit reveal-shift">
+          <div class="unit-era"><span>Completed 2019</span><small>Secondary</small></div>
+          <div class="unit-spine"><span class="unit-node" aria-hidden="true"></span></div>
+          <div class="unit-body">
+            <h3>Secondary Education Examination (SEE) — Technical Stream, Civil Engineering — Completed 2019</h3>
+            <p class="unit-meta">Shree Bhanu Jana Secondary School <span class="loc">· Taplejung</span></p>
+            <p class="unit-result">Result: SEE passed (technical stream).</p>
+            <p>First practical exposure to civil-engineering fundamentals, basic surveying and construction materials — the starting point of my interest in geotechnics and geology.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FIELDWORK GALLERY ===== -->
   <section id="gallery" class="gallery stratum" aria-labelledby="gallery-heading">
     <div class="wrap">
-      <p class="layer-tag">Exposed Outcrops · Field Photography</p>
-      <h2 id="gallery-heading" class="section-title fault-split">In the Field</h2>
-      <p class="section-sub">Moments from site supervision, surveying, and foundation work across Taplejung's terrain.</p>
+      <p class="layer-tag">Field Photography · With Captions</p>
+      <h2 id="gallery-heading" class="section-title fault-split">Fieldwork</h2>
+      <p class="section-sub">Site supervision, surveying and foundation work across Taplejung’s terrain. Select any photo to enlarge it (keyboard: Enter to open, arrow keys to browse, Escape to close).</p>
       <div class="gallery-grid" id="gallery-grid"></div>
     </div>
   </section>
 
-  <!-- ===== FIELD MAP ===== -->
-  <section id="field-map" class="field-map stratum" aria-labelledby="map-heading">
+  <!-- ===== FIELD SITES / MAP ===== -->
+  <section id="field-sites" class="field-map stratum" aria-labelledby="map-heading">
     <div class="wrap">
-      <p class="layer-tag">Survey Grid · Geological Coverage</p>
-      <h2 id="map-heading" class="section-title fault-split">Map of Nepal</h2>
-      <p class="section-sub">Where I've worked, surveyed and studied — from transboundary corridors at Rasuwagadhi to transmission alignments in Taplejung.</p>
-      <div class="map-shell">
-        <div id="travelMap" class="map-canvas" role="application" tabindex="0"
-          aria-label="Interactive map of Nepal showing fieldwork, research, and academic locations. Use the legend to navigate to specific sites."></div>
-        <aside class="map-legend" aria-label="Field site legend">
-          <h3 class="map-legend-title">Field Sites</h3>
-          <ul class="map-legend-list" id="map-legend-list"></ul>
-          <ul class="map-key" aria-label="Map symbol key">
-            <li><span class="legend-dot legend-dot--work" aria-hidden="true"></span> Field work</li>
-            <li><span class="legend-dot legend-dot--research" aria-hidden="true"></span> Research</li>
-            <li><span class="legend-dot legend-dot--study" aria-hidden="true"></span> Academic</li>
-          </ul>
-          <p class="map-legend-note">Select a site to zoom in, or drag the map to explore. Scroll-zoom activates after you click the map.</p>
-        </aside>
-      </div>
+      <p class="layer-tag">Survey Grid · Where I Have Worked</p>
+      <h2 id="map-heading" class="section-title fault-split">Field Sites</h2>
+      <p class="section-sub">Where I’ve worked, surveyed and studied — from the transboundary corridor at Rasuwagadhi to transmission alignments in Taplejung.</p>
+
+      <h3 class="subsection-title">Locations (text list)</h3>
+      <ul class="site-list">
+        <li><strong>Taplejung, Koshi Province</strong> — Field work: RPGCL Mewa–Changhe 132&nbsp;kV transmission line, foundation geology and site supervision (~27.35°N, 87.67°E).</li>
+        <li><strong>Madhyaphawa Khola, Taplejung</strong> — Field work: hydroelectric site investigation, on-the-job training (~27.15°N, 87.75°E).</li>
+        <li><strong>Rasuwagadhi–Kerung, Rasuwa</strong> — Research: published flood-dynamics study at the Nepal–Tibet border corridor (~28.28°N, 85.38°E).</li>
+        <li><strong>Jajarkot</strong> — Research: seismic micro-zonation study, in progress (~28.72°N, 82.19°E).</li>
+        <li><strong>Kathmandu</strong> — Academic: Tri-Chandra Multiple Campus, Tribhuvan University (~27.72°N, 85.32°E).</li>
+      </ul>
+
+      <details class="map-details">
+        <summary>Show interactive map</summary>
+        <div class="map-shell">
+          <div id="travelMap" class="map-canvas" role="application" tabindex="0"
+            aria-label="Interactive map of Nepal showing five fieldwork, research and academic locations. The same locations are listed as text above; use the legend buttons to navigate to specific sites."></div>
+          <aside class="map-legend" aria-label="Field site legend">
+            <h3 class="map-legend-title">Field Sites</h3>
+            <ul class="map-legend-list" id="map-legend-list"></ul>
+            <ul class="map-key" aria-label="Map symbol key">
+              <li><span class="legend-dot legend-dot--work" aria-hidden="true"></span> Field work</li>
+              <li><span class="legend-dot legend-dot--research" aria-hidden="true"></span> Research</li>
+              <li><span class="legend-dot legend-dot--study" aria-hidden="true"></span> Academic</li>
+            </ul>
+            <p class="map-legend-note">Select a site to zoom in, or drag the map to explore. Scroll-zoom activates after you click the map.</p>
+          </aside>
+        </div>
+      </details>
     </div>
   </section>
-  </div>
 
-  <!-- ===== MANTLE CORE — CONTACT ===== -->
+  <!-- ===== MENTORS & TESTIMONIALS ===== -->
+  <section id="mentors" class="mentors stratum" aria-labelledby="mentors-heading">
+    <div class="wrap">
+      <p class="layer-tag">People · Guidance &amp; References</p>
+      <h2 id="mentors-heading" class="section-title fault-split">Mentors &amp; Testimonials</h2>
+      <p class="section-sub">Guidance from academic mentors, and short accounts from people I have worked with. Additional references available on request.</p>
+      <p class="mentors-lead">Grateful for the academic mentors who shaped my path into geology research.</p>
+      <div class="mentor-strip" id="mentor-strip"></div>
+      <h3 class="subsection-title">What People Say</h3>
+      <div class="testimonials-grid" id="testimonials-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
   <section id="contact" class="contact stratum" aria-labelledby="contact-heading">
     <div class="wrap">
-      <p class="layer-tag">Moho Discontinuity · Mantle Signals</p>
-      <h2 id="contact-heading" class="section-title fault-split">Reach the Core</h2>
-      <p class="section-sub">Interested in collaboration, research opportunities, or just a conversation? Send a signal down through the crust.</p>
+      <p class="layer-tag">Get in Touch</p>
+      <h2 id="contact-heading" class="section-title fault-split">Contact</h2>
+      <p class="section-sub">Open to graduate research opportunities, geotechnical consulting and project collaborations.</p>
 
       <div class="contact-card reveal">
-        <p class="contact-intro" id="contact-intro"></p>
+        <p class="contact-intro">The fastest way to reach me is email or phone — both listed below. My current CV is one click away.</p>
         <a class="btn btn-primary" href="CV_SUJAN_PAUDYAL.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
-        <address class="contact-details" id="contact-details"></address>
-        <p class="languages" id="languages"></p>
+        <address class="contact-details" id="contact-details">
+          <div class="contact-row"><strong>Email:</strong><span class="contact-val"><a href="mailto:again.sujan@gmail.com">again.sujan@gmail.com</a></span></div>
+          <div class="contact-row"><strong>Phone:</strong><span class="contact-val"><a href="tel:+9779867996682">+977 986-7996682</a></span></div>
+          <div class="contact-row"><strong>LinkedIn:</strong><span class="contact-val"><a href="https://www.linkedin.com/in/sujanpaudyal" rel="noopener noreferrer">linkedin.com/in/sujanpaudyal</a></span></div>
+          <div class="contact-row"><strong>Location:</strong><span class="contact-val"><span>Kathmandu / Koshi Province, Nepal</span></span></div>
+          <div class="contact-row"><strong>References:</strong><span class="contact-val"><span>Academic &amp; professional references available on request</span></span></div>
+        </address>
+        <p class="languages">Languages: Nepali (native) · English (fluent) · Hindi (conversational)</p>
       </div>
     </div>
   </section>
 </main>
 
-<!-- ======================== FOOTER · INNER CORE ======================== -->
+<!-- ======================== FOOTER ======================== -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="magma-line" aria-hidden="true"></div>
     <div class="footer-inner">
       <p class="footer-brand">Sujan<span>.</span></p>
-      <ul class="footer-links" id="footer-links" aria-label="Footer"></ul>
+      <ul class="footer-links" aria-label="Footer">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#qualifications">Qualifications</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#gallery">Fieldwork</a></li>
+        <li><a href="#field-sites">Field Sites</a></li>
+        <li><a href="#mentors">Mentors</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
-    <p class="footer-copy" id="footer-copy"></p>
+    <p class="footer-copy">© 2026 Sujan Paudyal · Civil Sub-Engineer &amp; Geologist, Nepal</p>
   </div>
 </footer>
 
@@ -248,20 +621,20 @@
 </div>
 
 <noscript>
-  <p style="text-align:center;padding:20px;color:#b3a795">JavaScript is disabled — content is rendered statically where possible. Enable JS for the full stratigraphic experience.</p>
+  <p style="text-align:center;padding:20px;color:#b3a795">JavaScript is disabled — all qualifications, experience, education, projects and contact details above remain fully readable. The gallery thumbnails still display with captions; the interactive map and animations require JavaScript.</p>
 </noscript>
 
 <!-- ======================== SCRIPTS ======================== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<!-- Optional libraries load LAST and fail-safe: every essential section is already rendered in static HTML above. -->
 <script src="js/data.js" defer></script>
-<script src="js/seismograph.js" defer></script>
-<script src="js/three-hero.js" defer></script>
-<!-- Geo Lab WebGL instruments archived → archive/geolab-webgl/ -->
 <script src="js/theme-switcher.js" defer></script>
 <script src="js/main.js" defer></script>
+<script src="js/seismograph.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="js/three-hero.js" defer></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<!-- GSAP parallax removed: decorative only, and its CDN failure previously risked blocking rendering -->
 
 </body>
 </html>
