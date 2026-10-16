@@ -289,8 +289,8 @@ function renderEnrichments() {
 }
 
 /* ==========================================================================
-   6. FIELD MAP (Leaflet) — initialised ON DEMAND when the <details> opens,
-   and only if Leaflet loaded. Text list of sites is already in the HTML.
+   6. NEPAL MAP (Leaflet) — the "Places I've Travelled" map is shown inline;
+   initialised once Leaflet is available. Text list of places is in the HTML.
    ========================================================================== */
 let mapInited = false, mapInstance = null;
 
@@ -311,6 +311,21 @@ function initMap() {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mapInstance);
+
+  // Nepal boundary overlay so the map clearly reads as a map of Nepal
+  try {
+    fetch('https://raw.githubusercontent.com/glynnbird/countriesgeojson/master/nepal.geojson')
+      .then(r => (r.ok ? r.json() : Promise.reject(new Error('boundary unavailable'))))
+      .then(geo => {
+        if (!mapInstance) return;
+        const boundary = L.geoJSON(geo, {
+          style: { color: '#c98d5f', weight: 2, fillColor: '#c98d5f', fillOpacity: 0.06, dashArray: '6 4' },
+          interactive: false
+        }).addTo(mapInstance);
+        boundary.bringToBack();
+      })
+      .catch(() => { /* boundary is decorative — tiles already show Nepal */ });
+  } catch (e) { /* fetch unsupported — ignore */ }
 
   const markers = {};
   const legendBtns = $$('.map-legend-item');
@@ -366,14 +381,8 @@ function initMap() {
 }
 
 function initMapOnDemand() {
-  const details = $('.map-details');
-  if (!details) return;
-  details.addEventListener('toggle', () => {
-    if (details.open) {
-      initMap();
-      if (mapInstance) setTimeout(() => mapInstance.invalidateSize(), 60);
-    }
-  });
+  // Map is displayed inline (no <details> toggle any more) — initialise directly.
+  initMap();
 }
 
 /* ==========================================================================
