@@ -2149,25 +2149,19 @@ section > * {
 
 .photo-card {
   position: relative;
+  width: min(400px, 100%);
+  margin-inline: auto;
   border-radius: var(--radius-xl);
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  transform: rotate(2deg);
-  transition: all var(--transition-slow);
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: rotate(2deg) translateY(0);
-  }
-  50% {
-    transform: rotate(2deg) translateY(-20px);
-  }
+  transform: rotate(1.5deg);
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+  will-change: transform;
 }
 
 .photo-card:hover {
-  transform: rotate(0deg) scale(1.05);
+  transform: rotate(0deg) scale(1.02);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
 }
 
