@@ -622,14 +622,15 @@
 
 <!-- ======================== SCRIPTS ======================== -->
 <!-- Optional libraries load LAST and fail-safe: every essential section is already rendered in static HTML above. -->
+<!-- Leaflet (map) loads FIRST so it is guaranteed available before main.js runs -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <script src="js/data.js" defer></script>
 <script src="js/theme-switcher.js" defer></script>
 <script src="js/main.js" defer></script>
 <script src="js/seismograph.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="js/three-hero.js" defer></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <!-- GSAP parallax removed: decorative only, and its CDN failure previously risked blocking rendering -->
 
 </body>

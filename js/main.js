@@ -10,7 +10,7 @@
      · accordion behaviour for the statically rendered project/research cards
      · gallery rendering + accessible lightbox (focus trap, Esc, arrows)
      · mentor photos + testimonials + map legend (decorative enrichment)
-     · Leaflet map initialised ON DEMAND (when its <details> is opened)
+     · Leaflet map initialised on load, with retry if the CDN script is still loading
      · copy buttons for email/phone
    ========================================================================== */
 'use strict';
@@ -296,10 +296,19 @@ let mapInited = false, mapInstance = null;
 
 function initMap() {
   const mapEl = $('#travelMap');
-  if (!mapEl || mapInited || typeof L === 'undefined' || !D) return;
+  if (!mapEl || mapInited || !D) return;
+  // Leaflet may still be loading (deferred CDN script) — retry shortly instead of giving up
+  if (typeof L === 'undefined') {
+    if (!(initMap._tries > 20)) {
+      initMap._tries = (initMap._tries || 0) + 1;
+      setTimeout(initMap, 250);
+    }
+    return;
+  }
   mapInited = true;
 
-  const PIN_COLORS = { work: '#c98d5f', research: '#6aaee6', study: '#d8b25f' };
+  // Pin colours match the legend dots in css/strata.css
+  const PIN_COLORS = { work: '#52b788', research: '#6aaee6', study: '#d8b25f' };
   try {
     mapInstance = L.map(mapEl, {
       center: [28.3949, 84.124], zoom: 7, minZoom: 6, maxZoom: 17,
@@ -307,19 +316,37 @@ function initMap() {
     });
   } catch (e) { mapInited = false; return; }
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(mapInstance);
+  // Tile layer with two CDN fallbacks so the map still works if one host fails
+  const TILE_SOURCES = [
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+  ];
+  let tileIndex = 0;
+  function addTileLayer(url) {
+    L.tileLayer(url, {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    })
+      .on('tileerror', function () {
+        if (tileIndex < TILE_SOURCES.length - 1) {
+          tileIndex += 1;
+          mapInstance.removeLayer(this);
+          addTileLayer(TILE_SOURCES[tileIndex]);
+        }
+      })
+      .addTo(mapInstance);
+  }
+  addTileLayer(TILE_SOURCES[0]);
 
-  // Nepal boundary overlay so the map clearly reads as a map of Nepal
+  // Nepal country boundary (bundled locally — no network dependency) so the
+  // map clearly reads as a map of Nepal
   try {
-    fetch('https://raw.githubusercontent.com/glynnbird/countriesgeojson/master/nepal.geojson')
+    fetch('nepal.geojson')
       .then(r => (r.ok ? r.json() : Promise.reject(new Error('boundary unavailable'))))
       .then(geo => {
         if (!mapInstance) return;
         const boundary = L.geoJSON(geo, {
-          style: { color: '#c98d5f', weight: 2, fillColor: '#c98d5f', fillOpacity: 0.06, dashArray: '6 4' },
+          style: { color: '#c98d5f', weight: 2.5, fillColor: '#c98d5f', fillOpacity: 0.08, dashArray: '6 4' },
           interactive: false
         }).addTo(mapInstance);
         boundary.bringToBack();
